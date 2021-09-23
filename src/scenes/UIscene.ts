@@ -1,4 +1,5 @@
 import barracontaminacion from "./barracontaminacion"
+
 export default class UIscene extends Phaser.Scene
 {
 	constructor()
@@ -9,28 +10,33 @@ export default class UIscene extends Phaser.Scene
     create(){
 
         //CONTAMINACION
-        const x = 200
+        const x = 100
         const y = 50
         const fullwidth = 300
         const barra_contaminacion = new barracontaminacion (this, x,y, fullwidth)
-        .withLeftCap(this.add.image(200,100,"leftcap"))
-        .withMiddleCap(this.add.image(200,100,"midcap"))
-        .withRightCap(this.add.image(200,100,"rightcap"))
+        .withLeftCap(this.add.image(0,0,"leftcap"))
+        .withMiddleCap(this.add.image(0,0,"midcap"))
+        .withRightCap(this.add.image(0,0,"rightcap"))
         .layout()
 
-        this.add.rectangle(20, 20, 100, 100, 1, 1)
+        
+        //POR AHORA NO FUNCIONA >(  
+        this.add.rectangle(300, 200, 100, 100, 1, 1)
         .setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            barra_contaminacion.llenarBarra(0.5)
+            barra_contaminacion.animateToFill(0.5)
         })
-        .on("pointerdown", ()=> console.log("ashe"))
-        .on("pointerdown", ()=> this.scene.stop("game"))
+        .on("pointerdown", ()=> console.log("baja la barrita?"))
 
         //TUERCA
 
+        this.add.image(1850, 50, "tuerca").setScale(0.15)
+        .setInteractive()
+        .on("pointerdown", () => this.scene.run ("ingame_menu"))
+        .on("pointerdown", () => console.log("abre menu ingame"))
+        //hacer menu ingame
+
     }
-
-
 
 
 }

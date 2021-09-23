@@ -40,7 +40,7 @@ export default class barracontaminacion{
         return this
     }
 
-    llenarBarra(fill: number, duration: number = 1000){
+    animateToFill(fill: number, duration: number = 1000){
         if (!this.middleCap){
             return
         }
