@@ -23,6 +23,14 @@ export default class preloader extends Phaser.Scene
         this.load.image("boton_volver", "images/boton_volver.png")
         this.load.image("informacion", "images/informacion.png")
         this.load.image("tuerca", "images/tuerca.png")
+        this.load.image("menu_ingame", "images/menu_ingame.png")
+        this.load.image("boton_tutorial2", "images/boton_tutorial2.png")
+        this.load.image("boton_reanudar", "images/boton_reanudar.png")
+        this.load.image("boton_salir", "images/boton_salir.png")
+
+
+
+
         this.load.image("leftcap", "images/leftcap.png")
         this.load.image("midcap", "images/midcap.png")
         this.load.image("rightcap", "images/rightcap.png")

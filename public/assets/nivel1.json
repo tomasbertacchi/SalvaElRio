@@ -28,15 +28,92 @@
          "name":"spawner",
          "objects":[
                 {
-                 "height":57.5757575757575,
-                 "id":24,
-                 "name":"spawn_barco",
+                 "height":60,
+                 "id":27,
+                 "name":"spawn_1",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":63.6363636363637,
-                 "x":254.545454545455,
-                 "y":484.848484848485
+                 "width":63.5,
+                 "x":1854,
+                 "y":117.181818181818
+                }, 
+                {
+                 "height":60,
+                 "id":45,
+                 "name":"spawn_1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":63.5,
+                 "x":1858.25,
+                 "y":238
+                }, 
+                {
+                 "height":60,
+                 "id":46,
+                 "name":"spawn_1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":63.5,
+                 "x":1854.25,
+                 "y":356
+                }, 
+                {
+                 "height":60,
+                 "id":47,
+                 "name":"spawn_1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":63.5,
+                 "x":1860.25,
+                 "y":476
+                }, 
+                {
+                 "height":60,
+                 "id":48,
+                 "name":"spawn_1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":63.5,
+                 "x":1854.25,
+                 "y":596
+                }, 
+                {
+                 "height":60,
+                 "id":49,
+                 "name":"spawn_1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":63.5,
+                 "x":1860.25,
+                 "y":718
+                }, 
+                {
+                 "height":76,
+                 "id":50,
+                 "name":"spawn-1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":84,
+                 "x":1614,
+                 "y":286
+                }, 
+                {
+                 "height":2,
+                 "id":51,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2,
+                 "x":1254,
+                 "y":402
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -45,7 +122,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":27,
+ "nextobjectid":52,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
@@ -54,7 +131,7 @@
         {
          "columns":30,
          "firstgid":1,
-         "image":"tileset.png",
+         "image":"..\/..\/..\/..\/SALVA EL RIO ALPHA\/salvaalrioalpha\/public\/assets\/tileset.png",
          "imageheight":1080,
          "imagewidth":1920,
          "margin":0,
@@ -878,7 +955,7 @@
         {
          "columns":3,
          "firstgid":541,
-         "image":"tileset2.png",
+         "image":"..\/..\/..\/..\/SALVA EL RIO ALPHA\/salvaalrioalpha\/public\/assets\/tileset2.png",
          "imageheight":180,
          "imagewidth":192,
          "margin":0,

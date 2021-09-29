@@ -35,7 +35,6 @@ export default class barracontaminacion{
             this.middleCap.displayWidth = this.width
         }
 
-        
         this.layoutSegments()
         return this
     }
@@ -59,19 +58,15 @@ export default class barracontaminacion{
         })
 
     }
-    private layoutSegments(){
+    layoutSegments(){
         if( !this.leftCap || !this.middleCap || !this.rightCap){
             return this
         }
 
-        this.middleCap.displayWidth = this.width
-
         this.leftCap.x = this.x
         this.leftCap.y = this.y
-
         this.middleCap.x = this.leftCap.x + this.leftCap.width
         this.middleCap.y = this.leftCap.y
-
         this.rightCap.x = this.middleCap.x + this.middleCap.displayWidth
         this.rightCap.y = this.middleCap.y
     }

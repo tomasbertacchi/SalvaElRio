@@ -2,6 +2,7 @@ import barracontaminacion from "./barracontaminacion"
 
 export default class UIscene extends Phaser.Scene
 {
+   
 	constructor()
 	{
 		super('ui')
@@ -20,11 +21,11 @@ export default class UIscene extends Phaser.Scene
         .layout()
 
         
-        //POR AHORA NO FUNCIONA >(  
+        //FUNCIONA!!
         this.add.rectangle(300, 200, 100, 100, 1, 1)
         .setInteractive()
-        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            barra_contaminacion.animateToFill(0.5)
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+            barra_contaminacion.animateToFill(0.9)
         })
         .on("pointerdown", ()=> console.log("baja la barrita?"))
 
@@ -32,11 +33,13 @@ export default class UIscene extends Phaser.Scene
 
         this.add.image(1850, 50, "tuerca").setScale(0.15)
         .setInteractive()
-        .on("pointerdown", () => this.scene.run ("ingame_menu"))
+        .on("pointerdown", () => {this.scene.run("menuingame");this.scene.pause("game")})
         .on("pointerdown", () => console.log("abre menu ingame"))
         //hacer menu ingame
 
+
     }
 
+  
 
 }
