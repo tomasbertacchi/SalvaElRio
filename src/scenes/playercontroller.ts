@@ -1,55 +1,64 @@
-// import Phaser, { Scene } from "phaser"
-// // import StateMachine from "stateMachine/stateMachine"
-// export default class PlayerController
-// {
-//     private barco: Phaser.Physics.Arcade.Sprite
-//     private stateMachine: StateMachine
-//     private cursores!: Phaser.Events.EventEmitter
-//     public target = new Phaser.Math.Vector2()
+import Phaser from "phaser"
+import StateMachine from "~/statemachine/statemachine"
+export default class PlayerController
+{
+    private barco: Phaser.Physics.Arcade.Sprite
+    private scene: Phaser.Scene
+    private stateMachine: StateMachine
+    private cursores: Phaser.Types.Input.Keyboard.CursorKeys
+    private pointer: any
+    private target: any
 
-//     physics: any
-    
-//     constructor(barco: Phaser.Physics.Arcade.Sprite, cursores: Phaser.Events.EventEmitter){
+    constructor(scene: Phaser.Scene, barco: Phaser.Physics.Arcade.Sprite, cursores: Phaser.Types.Input.Keyboard.CursorKeys){
+        this.scene = scene
+        this.barco = barco  
+        this.cursores = cursores
+        this.pointer = scene.input.activePointer;
+        this.stateMachine = new StateMachine(this, "player")
 
-//         this.barco = barco  
-//         this.stateMachine = new StateMachine(this, "player")
+        this.stateMachine.addState("idle",{
+            onEnter: this.idleOnEnter,
+            onUpdate: this.idleOnUpdate
 
-//         this.stateMachine.addState("idle",{
-//             onEnter: this.idleOnEnter
-//         })
-//         .addState("walk",{
-//             onEnter: this.walkOnEnter,
-//             onUpdate: this.walkOnUpdate,
-//         })
-//         .setState("idle")
-//     }
+        })
+        .addState("walk",{
+            onEnter: this.walkOnEnter,
+            onUpdate: this.walkOnUpdate
+        })
+        .setState("idle")
+    }
 
-//     update(dt: number){
-//         this.stateMachine.update(dt)
-//     }
+    update(dt: number){
+        this.stateMachine.update(dt)
+    }
 
-//     private idleOnEnter(){
+    private idleOnEnter(){  
+        console.log("hola")
+    }
 
+    private idleOnUpdate(){
+        if (this.pointer.isDown){
+            this.target = new Phaser.Math.Vector2(this.pointer.x, this.pointer.y)
 
-//     }
+            var angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.barco.x, this.barco.y, this.pointer.x, this.pointer.y);
+            this.barco.setAngle(angle +90);
+            this.scene.physics.moveToObject(this.barco, this.target, 200);
 
-//     private walkOnEnter(){
-
-//     }
-
-//     private walkOnUpdate(){
+            this.stateMachine.setState("walk")
+        }
         
-//         this.cursores.on("pointerdown",(pointer: { x: number; y: number }) => {
+    }
 
-//             this.target.x = pointer.x;
-//             this.target.y = pointer.y;
-//             this.physics.moveToObject(this.barco, this.target, 200);
-//             var angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.barco.x, this.barco.y, pointer.x, pointer.y);
-//             this.barco.setAngle(angle +90);
-            
-//         }, this);
+    private walkOnEnter(){
 
-//         if(this.barco.x = this.barco.y)
-//         this.stateMachine.setState("idle")
-//     }
-// }
+    }
+
+    private walkOnUpdate(){
+        console.log("hola")
+        var distance = Phaser.Math.Distance.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
+        if (distance < 4)
+        {
+            this.barco.body.reset(this.target.x, this.target.y);
+        }
+    }
+}

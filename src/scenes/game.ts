@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-//import PlayerController from './playercontroller'
+import PlayerController from './playercontroller'
 
 export default class game extends Phaser.Scene
 {
@@ -14,80 +14,68 @@ export default class game extends Phaser.Scene
     public target = new Phaser.Math.Vector2()
     private velocidad: any
     private spawny: any
-    // private playerController?: PlayerController
+    private playerController?: PlayerController
 
 	constructor()
 	{
 		super('game')
 	}
-    preload(){
-        this.cursores = this.input.keyboard.createCursorKeys();
+
+    init(){
+        this.cursores = this.input.keyboard.createCursorKeys()
     }
 
+    preload(){
+        
+    }
+    
     create()
     {
         this.scene.run("ui")
+        
+        
+        
         ///////////////////////////TILEMAP//////////////////
         const map = this.make.tilemap({key: "nivel1"})  //carga tilemap
         const tileset = map.addTilesetImage("tileset", "tileset")  //carga tileset
         const terreno = map.createLayer("terreno", tileset) //carga layer
         terreno.setCollisionByProperty({borde: true}) //colision por propiedad
         const objectsLayer = map.getObjectLayer('spawner')
-
         
-
         this.basura = this.physics.add.group()
-        this.basura.angle(90)
+        
         this.time.addEvent({ delay: 1000, callback: this.numerosrandom, callbackScope: this, loop: true });
         this.time.addEvent({ delay: 1000, callback: this.onSecond2, callbackScope: this, loop: true });
         
-        // objectsLayer.objects.forEach(objData => {
-		// 	const { x = 0, y = 0, name, width = 0, height = 0 } = objData
-
-		// 	switch (name)
-		// 	{
-		// 		case 'spawn_1':
-		// 		{
-        //             this.time.addEvent({ delay: 3000, callback: this.onSecond2, callbackScope: this, loop: true });
-					
-		// 			break
-		// 		}
-        //     }   
-        // });
-    
-        //////////////////////////////////////////////////
-
+        
         ////render tiles colisionadas//////////d/  ESTA ACTIVADO
         const debugGraphics = this.add.graphics().setAlpha(0.75);
         terreno.renderDebug(debugGraphics, {
-        tileColor: null, // Color of non-colliding tiles
-        collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-        faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
+            tileColor: null, // Color of non-colliding tiles
+            collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+            faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
         });
-        ///////////////////////////////////
-
+        /////////////////////////////////a//
+        // this.input.on("pointerdown", (pointer: { x: number; y: number }) => {
+            
+        //     this.target.x = pointer.x;
+        //     this.target.y = pointer.y;
+        //     var angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.barco.x, this.barco.y, pointer.x, pointer.y);
+        //     this.barco.setAngle(angle +90);
+        //     this.physics.moveToObject(this.barco, this.target, 200);
+            
+        // }, this);
         
-
         this.tiempo = 50;
         ////////////BARCO////////////////
         this.barco = this.physics.add.sprite(200,500 ,"barco")
         this.barco.setSize(80,80) ////CAMBIO/////
         this.physics.add.collider(this.barco, terreno) //COLISIONES BARCO TERRENO
         this.physics.add.overlap(this.barco, this.basura, this.sumaPunto)
-        //this.playerController = new PlayerController(this.barco, this.cursores2)
-
-
-        //////////////////////////////
-        this.input.on("pointerdown", (pointer: { x: number; y: number }) => {
-
-            this.target.x = pointer.x;
-            this.target.y = pointer.y;
-            var angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.barco.x, this.barco.y, pointer.x, pointer.y);
-            this.barco.setAngle(angle +90);
-            this.physics.moveToObject(this.barco, this.target, 200);
-    
-        }, this);
-
+        
+        this.playerController = new PlayerController(this, this.barco, this.cursores)
+        
+        
         /////////////////TEXTOS////////////
         this.tiempo = 50
         this.texto_puntuacion = this.add.text(800,30, "Puntuacion: ",{fontFamily: "Courier", fontSize: 32})
@@ -99,26 +87,31 @@ export default class game extends Phaser.Scene
 
     }
 
-    update(){
+    update(t: number, dt: number){
+
+        if (!this.playerController)
+        {
+            return
+        }
+
+        this.playerController.update(dt)
+
+
         if(!this.cursores || !this.barco){
             return
         }
 
-        var distance = Phaser.Math.Distance.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
-        if (this.barco.body.speed > 0)
-        {
-
-        }
-        if (distance < 4)
-        {
-            this.barco.body.reset(this.target.x, this.target.y);
-        }
+        // var distance = Phaser.Math.Distance.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
+        // if (distance < 4)
+        // {
+        //     this.barco.body.reset(this.target.x, this.target.y);
+        // }
 
         // if(!this.playerController){
         //     return
         // }
 
-        // this.playerController.update(dt)
+        // // this.playerController.update(dt)
 
         if(this.target.y < 120){
             this.barco.setVelocity(0,0)
@@ -137,16 +130,6 @@ export default class game extends Phaser.Scene
             this.scene.start('Gameover');
         }
     }
-
-    sumaPunto(){
-
-    }
-
-    
-    numerosrandom(){
-        this.velocidad = Phaser.Math.Between(-200, -100)
-        this.spawny = Phaser.Math.Between(140, 950)
-    }
     onSecond2(){
         this.numerosrandom()
         this.basura.create(1920, this.spawny, "barco")
@@ -154,4 +137,12 @@ export default class game extends Phaser.Scene
  
     
     }
+    sumaPunto(){
+        
+    }
+    numerosrandom(){
+        this.velocidad = Phaser.Math.Between(-200, -100)
+        this.spawny = Phaser.Math.Between(140, 950)
+    }
+    
 }
