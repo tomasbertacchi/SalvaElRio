@@ -11,7 +11,7 @@ export default class game extends Phaser.Scene
     private numero_tiempo: any
     private puntuacion!: Phaser.GameObjects.Text
     private basura!: Phaser.Physics.Arcade.Group
-    public target = new Phaser.Math.Vector2()
+    // public target = new Phaser.Math.Vector2()
     private velocidad: any
     private spawny: any
     private playerController?: PlayerController
@@ -113,12 +113,12 @@ export default class game extends Phaser.Scene
 
         // // this.playerController.update(dt)
 
-        if(this.target.y < 120){
-            this.barco.setVelocity(0,0)
-        }    
-        else if (this.target.y > 1020){
-            this.barco.setVelocity(0,0)
-        }
+        // if(this.target.y < 120){
+        //     this.barco.setVelocity(0,0)
+        // }    
+        // else if (this.target.y > 1020){
+        //     this.barco.setVelocity(0,0)
+        // }
     }
   
 
