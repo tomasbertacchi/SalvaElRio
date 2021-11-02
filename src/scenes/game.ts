@@ -6,10 +6,7 @@ export default class game extends Phaser.Scene
     private cursores!: Phaser.Types.Input.Keyboard.CursorKeys
     private barco!: Phaser.Physics.Arcade.Sprite
     private tiempo!: number
-    private texto_puntuacion!: Phaser.GameObjects.Text
-    private textotiempo: any
-    private numero_tiempo: any
-    private puntuacion!: Phaser.GameObjects.Text
+    private puntuacionbasura!: number
     private basura!: Phaser.Physics.Arcade.Group
     // public target = new Phaser.Math.Vector2()
     private velocidad: any
@@ -23,6 +20,8 @@ export default class game extends Phaser.Scene
 
     init(){
         this.cursores = this.input.keyboard.createCursorKeys()
+        this.registry.set('agarrabasura', this.puntuacionbasura)
+        
     }
 
     preload(){
@@ -33,6 +32,7 @@ export default class game extends Phaser.Scene
     {
         this.scene.run("ui")
         
+        this.puntuacionbasura= 0
         
         
         ///////////////////////////TILEMAP//////////////////
@@ -71,17 +71,13 @@ export default class game extends Phaser.Scene
         this.barco = this.physics.add.sprite(200,500 ,"barco")
         this.barco.setSize(80,80) ////CAMBIO/////
         this.physics.add.collider(this.barco, terreno) //COLISIONES BARCO TERRENO
-        this.physics.add.overlap(this.barco, this.basura, this.sumaPunto)
+        this.physics.add.overlap(this.barco, this.basura, this.sumaPunto, undefined, this)
         
         this.playerController = new PlayerController(this, this.barco, this.cursores)
         
         
         /////////////////TEXTOS////////////
-        this.tiempo = 50
-        this.texto_puntuacion = this.add.text(800,30, "Puntuacion: ",{fontFamily: "Courier", fontSize: 32})
-        this.puntuacion = this.add.text(1130,30, "0",{fontFamily: "Courier", fontSize: 32})
-        this.textotiempo = this.time.addEvent({ delay: 1000, callback: this.onSecond, callbackScope: this, loop: true });
-        this.numero_tiempo = this.add.text(1300, 30, 'Tiempo restante: ', { fontFamily: 'Courier', fontSize: 32});
+
         //////////////
 
 
@@ -122,23 +118,20 @@ export default class game extends Phaser.Scene
     }
   
 
-    onSecond(){
-        this.numero_tiempo.setText('Tiempo restante: ' + this.tiempo);
-        this.tiempo = this.tiempo - 1;
-        this.registry.set("tiempo", this.tiempo)
-        if (this.tiempo == -1){
-            this.scene.start('Gameover');
-        }
-    }
+
     onSecond2(){
         this.numerosrandom()
-        this.basura.create(1920, this.spawny, "barco")
+        const spriteList = ["boton_jugar", "boton_siguiente", "tuerca", "barco"]
+        const spriteEnemy = spriteList[Phaser.Math.Between(0,3)]
+        this.basura.create(1920, this.spawny, spriteEnemy)
         this.basura.setVelocityX(-200)
  
-    
     }
-    sumaPunto(){
-        
+    sumaPunto(barco, basura){
+        console.log(basura)
+        basura.destroy()
+        this.puntuacionbasura += 1
+        this.registry.set("agarrabasura", this.puntuacionbasura)
     }
     numerosrandom(){
         this.velocidad = Phaser.Math.Between(-200, -100)
