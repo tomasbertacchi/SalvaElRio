@@ -12,6 +12,7 @@ export default class UIscene extends Phaser.Scene
     private graphics!: Phaser.GameObjects.Graphics
     private percent!: any
     private cantidadContaminacion!: number
+    private contaminacion: any
 	constructor()
 	{
 		super('ui')
@@ -43,10 +44,15 @@ export default class UIscene extends Phaser.Scene
             this.puntuacion.setText(data)
             if (key === "restapuntos")
             this.setContaminacionBar(data)
+            if((data) <= 0){
+                this.pierde()
+            }
         });
         
     }
     
+
+
     onSecond(){
         this.numero_tiempo.setText('Tiempo restante: ' + this.tiempo);
         this.tiempo = this.tiempo - 1;
@@ -59,7 +65,10 @@ export default class UIscene extends Phaser.Scene
     }
 
     pierde(){
-
+        console.log("cambio de escena")
+        this.scene.pause("ui")
+        this.scene.pause("game")
+        this.scene.run('pierdenivel')
     }
 
 
