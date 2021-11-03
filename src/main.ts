@@ -7,6 +7,8 @@ import informacion from './scenes/informacion'
 import game from './scenes/game'
 import UIscene from './scenes/UIscene'
 import menuingame from './scenes/menuingame'
+import gananivel from './scenes/gananivel1'
+import pierdenivel from './scenes/pierdenivel1'
 
 
 
@@ -26,7 +28,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			debug: true,
 		}
 	},
-	scene: [preloader, mainmenu, tutorial, informacion, creditos, game, UIscene, menuingame]
+	scene: [preloader, mainmenu, tutorial, informacion, creditos, game, UIscene, menuingame, gananivel, pierdenivel]
 }
 
 export default new Phaser.Game(config)

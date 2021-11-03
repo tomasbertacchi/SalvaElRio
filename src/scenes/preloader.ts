@@ -29,6 +29,7 @@ export default class preloader extends Phaser.Scene
         this.load.image("boton_salir", "images/boton_salir.png")
         this.load.image("barra", "images/barra.png")
 
+        this.load.image("gananivel", "images/etapasuperada.png")
 
 
         this.load.image("leftcap", "images/leftcap.png")
