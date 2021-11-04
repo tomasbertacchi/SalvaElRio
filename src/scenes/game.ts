@@ -109,7 +109,7 @@ export default class game extends Phaser.Scene
         basura.destroy()
         this.contaminacion -=5
         this.registry.set("restapuntos", this.contaminacion)
-        //console.log(this.contaminacion)
+        console.log(this.contaminacion)
     }
 
     

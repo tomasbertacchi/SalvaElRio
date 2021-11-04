@@ -42,9 +42,10 @@ export default class UIscene extends Phaser.Scene
         this.registry.events.on('changedata', (parent, key, data) => { 
             if (key === 'agarrabasura')
             this.puntuacion.setText(data)
+            
             if (key === "restapuntos")
             this.setContaminacionBar(data)
-            if((data) <= 0){
+            if((data) <= -5){
                 this.pierde()
             }
         });
@@ -61,6 +62,7 @@ export default class UIscene extends Phaser.Scene
             this.scene.pause("ui")
             this.scene.pause("game")
             this.scene.run('gananivel');
+            console.log("gana")
         }
     }
 
