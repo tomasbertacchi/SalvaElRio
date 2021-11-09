@@ -13,6 +13,8 @@ export default class preloader extends Phaser.Scene
         this.load.tilemapTiledJSON("nivel1", "assets/nivel1.json")
         this.load.image("barco", "images/barco.png")
 
+        this.load.image("boton", "images/boton.png")
+        this.load.image("botonazul", "images/boton_azul.png")
         this.load.image("boton_jugar", "images/boton_jugar.png");
         this.load.image("main_menu", "images/main_menu.png")
         this.load.image("boton_creditos", "images/boton_creditos.png");
