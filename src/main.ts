@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import Phaser from 'phaser'
 import preloader from './scenes/preloader'
 import tutorial from './scenes/tutorial'
@@ -9,7 +10,9 @@ import UIscene from './scenes/UIscene'
 import menuingame from './scenes/menuingame'
 import gananivel from './scenes/gananivel1'
 import pierdenivel from './scenes/pierdenivel1'
+import idioma from './scenes/idioma'
 
+localStorage.clear();
 
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -28,7 +31,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			debug: true,
 		}
 	},
-	scene: [preloader, mainmenu, tutorial, informacion, creditos, game, UIscene, menuingame, gananivel, pierdenivel]
+	scene: [preloader, idioma, mainmenu, tutorial, informacion, creditos, game, UIscene, menuingame, gananivel, pierdenivel]
 }
 
 export default new Phaser.Game(config)

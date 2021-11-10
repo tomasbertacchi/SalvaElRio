@@ -14,6 +14,9 @@ export default class preloader extends Phaser.Scene
         this.load.image("barco", "images/barco.png")
 
         this.load.image("boton", "images/boton.png")
+        this.load.image("botonES", "images/boton_ES.png")
+        this.load.image("botonBR", "images/boton_BR.png")
+        this.load.image("botonUS", "images/boton_US.png")
         this.load.image("botonazul", "images/boton_azul.png")
         this.load.image("boton_jugar", "images/boton_jugar.png");
         this.load.image("main_menu", "images/main_menu.png")
@@ -42,6 +45,6 @@ export default class preloader extends Phaser.Scene
 
     create()
     {
-        this.scene.start("menu")
+        this.scene.start("idioma")
     }
 }
