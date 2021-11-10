@@ -36,24 +36,17 @@ export default class PlayerController
 
     private idleOnEnter(){  
         console.log("idleOnEnter")
-<<<<<<< HEAD
         this.barco.setVelocity(0,0)
     }
 
     private idleOnUpdate(){
 
-=======
-    }
-
-    private idleOnUpdate(){
->>>>>>> cac73ff90a37a04a1de7578490e86b29ab556a81
         if (this.pointer.isDown && !this.firstClick){
             console.log('clic')
             this.target.x = this.pointer.x
             this.target.y = this.pointer.y
             this.stateMachine.setState("walk")
         }
-<<<<<<< HEAD
 
         if(this.target.y < 160){
             this.barco.setVelocity(0,0)
@@ -62,8 +55,6 @@ export default class PlayerController
         else if (this.target.y > 970){
             this.stateMachine.setState("idle")
         }
-=======
->>>>>>> cac73ff90a37a04a1de7578490e86b29ab556a81
         this.firstClick = false
         
     }
@@ -74,7 +65,6 @@ export default class PlayerController
 
     private walkOnUpdate(){
         var angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
-<<<<<<< HEAD
         this.barco.setAngle(angle+90);
         var distance = Phaser.Math.Distance.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
         //console.log('distancia '+ distance)
@@ -93,24 +83,6 @@ export default class PlayerController
             this.stateMachine.setState("idle")
         }
 
-=======
-        this.barco.setAngle(angle +90);
-        
-        
-        
-        var distance = Phaser.Math.Distance.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
-        console.log('distancia '+ distance)
-        console.log('target '+ this.target.x+ ' '+ this.target.y)
-        console.log('barco '+ this.barco.x +' '+ this.barco.y)
-        if (distance > 5) {
-            this.scene.physics.moveTo(this.barco, this.target.x, this.target.y, 200);
-            this.stateMachine.setState("walk")
-        } else {
-            this.barco.setVelocity(0,0)
-            this.stateMachine.setState("idle")
-        }
-
->>>>>>> cac73ff90a37a04a1de7578490e86b29ab556a81
         
     }
 }

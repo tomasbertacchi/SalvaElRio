@@ -11,6 +11,7 @@ import menuingame from './scenes/menuingame'
 import gananivel from './scenes/gananivel1'
 import pierdenivel from './scenes/pierdenivel1'
 import idioma from './scenes/idioma'
+import prepreloader from "./scenes/prepreloader"
 
 localStorage.clear();
 

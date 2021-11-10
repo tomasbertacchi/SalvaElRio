@@ -12,7 +12,6 @@ export default class preloader extends Phaser.Scene
         this.load.image("tileset", "assets/tileset.png")
         this.load.tilemapTiledJSON("nivel1", "assets/nivel1.json")
         this.load.image("barco", "images/barco.png")
-
         this.load.image("boton", "images/boton.png")
         this.load.image("botonES", "images/boton_ES.png")
         this.load.image("botonBR", "images/boton_BR.png")
@@ -33,10 +32,7 @@ export default class preloader extends Phaser.Scene
         this.load.image("boton_reanudar", "images/boton_reanudar.png")
         this.load.image("boton_salir", "images/boton_salir.png")
         this.load.image("barra", "images/barra.png")
-
         this.load.image("gananivel", "images/etapasuperada.png")
-
-
         this.load.image("leftcap", "images/leftcap.png")
         this.load.image("midcap", "images/midcap.png")
         this.load.image("rightcap", "images/rightcap.png")
@@ -46,5 +42,7 @@ export default class preloader extends Phaser.Scene
     create()
     {
         this.scene.start("idioma")
+
+        
     }
 }
