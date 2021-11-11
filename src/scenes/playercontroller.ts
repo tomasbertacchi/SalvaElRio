@@ -76,7 +76,7 @@ export default class PlayerController
         }
 
         if (distance > 5) {
-            this.scene.physics.moveTo(this.barco, this.target.x, this.target.y, 200);
+            this.scene.physics.moveTo(this.barco, this.target.x, this.target.y, 300);
             this.stateMachine.setState("walk")
         } else {
             this.barco.setVelocity(0,0)

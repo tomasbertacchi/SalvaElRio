@@ -17,7 +17,7 @@ export default class pierdenivel extends Phaser.Scene{
         this.add.text(600, 300, getPhrase("perdersalvaelrio"){color: "red", fontStyle: "bold", fontFamily: "Courier", fontSize: 80}))
         this.add.text(650,450, getPhrase("salvaelriopuntos") +this.registry.get("agarrabasura"){color: "red", fontStyle: "bold", fontFamily: "Courier", fontSize: 72}))
 
-        const boton_salir = this.add.image(600, 600, "boton").setScale(0.8)
+        const boton_salir = this.add.image(600, 780, "boton").setScale(0.6)
         .setInteractive()
         .on('pointerdown', () => {this.scene.stop("game");this.scene.stop("ui");this.scene.stop("pierdenivel");this.scene.start("menu")})
     }

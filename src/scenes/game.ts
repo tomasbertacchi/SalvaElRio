@@ -13,6 +13,7 @@ export default class game extends Phaser.Scene
     private puntuacionbasura!: number
     private barra: any
     private contaminacion!: number
+    private ola1: any
 
 	constructor()
 	{
@@ -40,41 +41,50 @@ export default class game extends Phaser.Scene
         terreno.setCollisionByProperty({borde: true}) //colision por propiedad
         const objectsLayer = map.getObjectLayer('spawner')
         /////////////////////////////////////////////////
-
+        
+        
+        
+        
+        
+        
+        
+        
         //GENERACION DE BASURA//
-        this.basura = this.physics.add.group()
+        this.basura = this.physics.add.group({
+        })
         this.time.addEvent({ delay: 1000, callback: this.numerosrandom, callbackScope: this, loop: true });
         this.time.addEvent({ delay: 1000, callback: this.onSecond2, callbackScope: this, loop: true });
         ////////////////////////
-
+        
         this.barra = this.physics.add.staticGroup()
         this.barra.create(-100, 1080/2, "barra")
         this.physics.add.collider(this.barra, this.basura, this.restaPunto, undefined, this)
-
+        
         
         ////render tiles colisionadas//////////d/  ESTA ACTIVADO
         // const debugGraphics = this.add.graphics().setAlpha(0.75);
         // terreno.renderDebug(debugGraphics, {
-        //     tileColor: null, // Color of non-colliding tiles
-        //     collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-        //     faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
-        // });
-        /////////////////////////////////a//
+            //     tileColor: null, // Color of non-colliding tiles
+            //     collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+            //     faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
+            // });
+            /////////////////////////////////a//
+            this.ola1 = this.physics.add.sprite(300,300, "ola1")
+            
+            ////////////BARCO////////////////
+            this.barco = this.physics.add.sprite(200,500 ,"barco")
+            this.barco.setSize(80,80) ////CAMBIO/////
+            this.physics.add.collider(this.barco, terreno) //COLISIONES BARCO TERRENO
+            this.physics.add.overlap(this.barco, this.basura, this.sumaPunto, undefined, this)
+            
+            this.playerController = new PlayerController(this, this.barco, this.cursores)
+        }
         
-        ////////////BARCO////////////////
-        this.barco = this.physics.add.sprite(200,500 ,"barco")
-        this.barco.setSize(80,80) ////CAMBIO/////
-        this.physics.add.collider(this.barco, terreno) //COLISIONES BARCO TERRENO
-        this.physics.add.overlap(this.barco, this.basura, this.sumaPunto, undefined, this)
-
-        this.playerController = new PlayerController(this, this.barco, this.cursores)
-    }
-
-    update(t: number, dt: number){
-
-        if (!this.playerController)
-        {
-            return
+        update(t: number, dt: number){
+            
+            if (!this.playerController)
+            {
+                return
         }
         this.playerController.update(dt)
 
@@ -82,14 +92,17 @@ export default class game extends Phaser.Scene
             return
         }
 
+        this.ola1.anims.play("ola1", true)
+
     }
   
     onSecond2(){
         this.numerosrandom()
-        const spriteList = ["boton_jugar", "boton_siguiente", "tuerca", "barco"]
-        const spriteEnemy = spriteList[Phaser.Math.Between(0,3)]
+        const spriteList = ["basura1", "basura2", "basura3", "basura4","basura5","basura6","basura7"]
+        const spriteEnemy = spriteList[Phaser.Math.Between(0,6)]
         this.basura.create(1920, this.spawny, spriteEnemy)
-        this.basura.setVelocityX(-400)
+    
+        this.basura.setVelocityX(-200)
  
     }
 
