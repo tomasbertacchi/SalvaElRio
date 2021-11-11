@@ -10,7 +10,7 @@ export default class informacion extends Phaser.Scene{
     //      \n
     create(){
         this.add.image(0,0, "informacion").setOrigin(0,0)
-        this.add.image(200, 1010, "boton_volver")
+        this.add.image(200, 1010, "boton").setScale(0.6)
         .setInteractive()
         .on('pointerdown', () => this.scene.start("menu"))
         this.add.text(146, 990, getPhrase("VOLVER"){color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 32}
