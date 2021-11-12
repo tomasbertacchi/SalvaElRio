@@ -12,6 +12,7 @@ import gananivel from './scenes/gananivel1'
 import pierdenivel from './scenes/pierdenivel1'
 import idioma from './scenes/idioma'
 import prepreloader from "./scenes/prepreloader"
+import unraf from "./scenes/unraf"
 
 localStorage.clear();
 
@@ -29,10 +30,10 @@ const config: Phaser.Types.Core.GameConfig = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
-			debug: true,
+			debug: false,
 		}
 	},
-	scene: [preloader, idioma, mainmenu, tutorial, informacion, creditos, game, UIscene, menuingame, gananivel, pierdenivel]
+	scene: [unraf,prepreloader,preloader, idioma, mainmenu, tutorial, informacion, creditos, game, UIscene, menuingame, gananivel, pierdenivel]
 }
 
 export default new Phaser.Game(config)

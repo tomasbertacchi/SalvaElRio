@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 import PlayerController from './playercontroller'
 
-export default class game extends Phaser.Scene
+export default class game2 extends Phaser.Scene
 {
     private cursores!: Phaser.Types.Input.Keyboard.CursorKeys
     private barco!: Phaser.Physics.Arcade.Sprite
@@ -18,7 +18,7 @@ export default class game extends Phaser.Scene
     private olasList: any
 	constructor()
 	{
-		super('game')
+		super('game2')
 	}
 
     init(){
@@ -122,7 +122,7 @@ export default class game extends Phaser.Scene
         this.olas.create(2000, this.olasY, olasMath)
         this.olas.setVelocityX(-250)
         this.olas.playAnimation(olasMath)
-        
+
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath2 = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY2, olasMath2)
@@ -131,6 +131,7 @@ export default class game extends Phaser.Scene
     }
 
     onSecond4(){
+        
     }
 
     sumaPunto(barco, basura){
