@@ -31,23 +31,17 @@ export default class game2 extends Phaser.Scene
     
     create()
     {
-        this.scene.run("ui")
+        this.scene.run("ui2")
         this.puntuacionbasura = 0;
         this.contaminacion = 100
         
         ///////////////////////////TILEMAP//////////////////
-        const map = this.make.tilemap({key: "nivel1"})  //carga tilemap
+        const map = this.make.tilemap({key: "nivel2"})  //carga tilemap
         const tileset = map.addTilesetImage("tileset", "tileset")  //carga tileset
         const terreno = map.createLayer("terreno", tileset) //carga layer
         terreno.setCollisionByProperty({borde: true}) //colision por propiedad
         const objectsLayer = map.getObjectLayer('spawner')
         /////////////////////////////////////////////////
-        
-        
-        
-        
-        
-        
         
         
         //GENERACION DE BASURA//
@@ -111,7 +105,7 @@ export default class game2 extends Phaser.Scene
         const spriteList = ["basura1", "basura2", "basura3", "basura4","basura5","basura6","basura7"]
         const spriteEnemy = spriteList[Phaser.Math.Between(0,6)]
         this.basura.create(2000, this.spawny, spriteEnemy)
-        this.basura.setVelocityX(-250)
+        this.basura.setVelocityX(-300)
 
     }
 
@@ -120,13 +114,13 @@ export default class game2 extends Phaser.Scene
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY, olasMath)
-        this.olas.setVelocityX(-250)
+        this.olas.setVelocityX(-300)
         this.olas.playAnimation(olasMath)
 
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath2 = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY2, olasMath2)
-        this.olas.setVelocityX(-250)
+        this.olas.setVelocityX(-300)
         this.olas.playAnimation(olasMath2)
     }
 
@@ -138,7 +132,7 @@ export default class game2 extends Phaser.Scene
         console.log(basura)
         basura.destroy()
         this.puntuacionbasura += 1
-        this.registry.set("agarrabasura", this.puntuacionbasura)
+        this.registry.set("agarrabasura2", this.puntuacionbasura)
     }
 
     numerosrandom(){
@@ -154,7 +148,7 @@ export default class game2 extends Phaser.Scene
     restaPunto(barra, basura){
         basura.destroy()
         this.contaminacion -=10
-        this.registry.set("restapuntos", this.contaminacion)
+        this.registry.set("restapuntos2", this.contaminacion)
         console.log(this.contaminacion)
     }
 
