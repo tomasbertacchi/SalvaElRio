@@ -26,7 +26,7 @@ export default class UIscene extends Phaser.Scene
         this.cantidadContaminacion = 100
 
 
-        this.tiempo = 2
+        this.tiempo = 50
         //this.texto_puntuacion = this.add.text(800,30, "Puntuacion: ",{fontFamily: "Courier", fontSize: 32, fontStyle:"bold"})
         this.add.text(800,30, getPhrase("salvaelriopuntos"){color: "white", fontStyle: "bold", fontFamily: "Courier", fontSize: 32}))
 
