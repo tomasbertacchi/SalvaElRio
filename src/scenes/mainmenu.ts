@@ -14,6 +14,9 @@ export default class mainmenu extends Phaser.Scene{
         //background
         this.add.image(0,0, "main_menu").setOrigin(0,0)
 
+        this.scene.stop("pierdenivel")
+        this.scene.stop("game")
+        this.scene.stop("ui")
 
         //botones
         const boton_jugar = this.add.image(1920 / 2, 400, "boton").setScale(0.78)

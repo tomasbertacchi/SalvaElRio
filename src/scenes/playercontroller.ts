@@ -71,9 +71,9 @@ export default class PlayerController
         //console.log('target '+ this.target.x+ ' '+ this.target.y)
         //console.log('barco '+ this.barco.x +' '+ this.barco.y)
 
-        if (this.barco.body.touching){
-            this.stateMachine.setState("idle")
-        }
+        // if (this.barco.body.touching){
+        //     this.stateMachine.setState("idle")
+        // }
 
         if (distance > 5) {
             this.scene.physics.moveTo(this.barco, this.target.x, this.target.y, 300);

@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 import PlayerController from './playercontroller'
 
-export default class game extends Phaser.Scene
+export default class game2 extends Phaser.Scene
 {
     private cursores!: Phaser.Types.Input.Keyboard.CursorKeys
     private barco!: Phaser.Physics.Arcade.Sprite
@@ -18,7 +18,7 @@ export default class game extends Phaser.Scene
     private olasList: any
 	constructor()
 	{
-		super('game')
+		super('game2')
 	}
 
     init(){
@@ -31,30 +31,25 @@ export default class game extends Phaser.Scene
     
     create()
     {
-        this.scene.run("ui")
-        //this.scene.run("puntuacion")
+        this.scene.stop("ui")
+        this.scene.run("ui2")
         this.puntuacionbasura = 0;
         this.contaminacion = 100
         
         ///////////////////////////TILEMAP//////////////////
-        const map = this.make.tilemap({key: "nivel1"})  //carga tilemap
+        const map = this.make.tilemap({key: "nivel2"})  //carga tilemap
         const tileset = map.addTilesetImage("tileset", "tileset")  //carga tileset
         const terreno = map.createLayer("terreno", tileset) //carga layer
         terreno.setCollisionByProperty({borde: true}) //colision por propiedad
         const objectsLayer = map.getObjectLayer('spawner')
         /////////////////////////////////////////////////
-        
-        
-        
-        
-        
-        
-        
+
         this.olas = this.physics.add.group({
         })
+
         this.basura = this.physics.add.group({
         })
-
+        
         ////////////BARCO////////////////
         this.barco = this.physics.add.sprite(200,500 ,"barco")
         this.barco.setSize(80,80) ////CAMBIO/////
@@ -62,12 +57,10 @@ export default class game extends Phaser.Scene
         this.physics.add.overlap(this.barco, this.basura, this.sumaPunto, undefined, this)
         
         this.playerController = new PlayerController(this, this.barco, this.cursores)
-    
-        
         
         
         //GENERACION DE BASURA//
-        
+
         this.time.addEvent({ delay: 1200, callback: this.numerosrandom, callbackScope: this, loop: true });
         this.time.addEvent({ delay: 1200, callback: this.onSecond2, callbackScope: this, loop: true });
         this.time.addEvent({ delay: 5000, callback: this.onSecond3, callbackScope: this, loop: true });
@@ -87,6 +80,8 @@ export default class game extends Phaser.Scene
             // });
             /////////////////////////////////a//
            
+            
+        
         }
         
 
@@ -114,7 +109,7 @@ export default class game extends Phaser.Scene
         const spriteList = ["basura1", "basura2", "basura3", "basura4","basura5","basura6","basura7"]
         const spriteEnemy = spriteList[Phaser.Math.Between(0,6)]
         this.basura.create(2000, this.spawny, spriteEnemy)
-        this.basura.setVelocityX(-250)
+        this.basura.setVelocityX(-300)
 
     }
 
@@ -123,13 +118,13 @@ export default class game extends Phaser.Scene
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY, olasMath)
-        this.olas.setVelocityX(-250)
+        this.olas.setVelocityX(-300)
         this.olas.playAnimation(olasMath)
 
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath2 = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY2, olasMath2)
-        this.olas.setVelocityX(-250)
+        this.olas.setVelocityX(-300)
         this.olas.playAnimation(olasMath2)
     }
 
@@ -141,7 +136,7 @@ export default class game extends Phaser.Scene
         console.log(basura)
         basura.destroy()
         this.puntuacionbasura += 1
-        this.registry.set("agarrabasura", this.puntuacionbasura)
+        this.registry.set("agarrabasura2", this.puntuacionbasura)
     }
 
     numerosrandom(){
@@ -157,7 +152,7 @@ export default class game extends Phaser.Scene
     restaPunto(barra, basura){
         basura.destroy()
         this.contaminacion -=10
-        this.registry.set("restapuntos", this.contaminacion)
+        this.registry.set("restapuntos2", this.contaminacion)
         console.log(this.contaminacion)
     }
 

@@ -1,7 +1,7 @@
 import barracontaminacion from "./barracontaminacion"
 import { getPhrase } from '~/services/translations'
 
-export default class UIscene extends Phaser.Scene
+export default class UIscene2 extends Phaser.Scene
 {   
 
     private tiempo!: any
@@ -12,18 +12,22 @@ export default class UIscene extends Phaser.Scene
     private puntuacion!: Phaser.GameObjects.Text
     private graphics!: Phaser.GameObjects.Graphics
     private percent!: any
-    private cantidadContaminacion!: number
+    private cantidadContaminacion2!: number
     private contaminacion: any
 	constructor()
 	{
-		super('ui')
+		super('ui2')
 	}
 
     create(){
 
+        this.scene.stop("pierdenivel")
+        this.scene.stop("game")
+        this.scene.stop("ui")
+
         this.graphics = this.add.graphics()
-        this.setContaminacionBar(100)
-        this.cantidadContaminacion = 100
+        this.setContaminacionBar2(100)
+        this.cantidadContaminacion2 = 100
 
 
         this.tiempo = 50
@@ -41,19 +45,18 @@ export default class UIscene extends Phaser.Scene
         
         this.add.image(1850, 50, "tuerca").setScale(0.15)
         .setInteractive()
-        .on("pointerdown", () => {this.scene.run("menuingame");this.scene.pause("game");this.scene.pause("ui")})
+        .on("pointerdown", () => {this.scene.run("menuingame2");this.scene.pause("game2");this.scene.pause("ui2")})
         .on("pointerdown", () => console.log("abre menu ingame"))
         //hacer menu ingame
         
         this.registry.events.on('changedata', (parent, key, data) => { 
-            if (key === 'agarrabasura')
+            if (key === 'agarrabasura2')
             this.puntuacion.setText(data)
             
-            if (key === "restapuntos")
-            this.setContaminacionBar(data)
+            if (key === "restapuntos2")
+            this.setContaminacionBar2(data)
             if((data) <= -5){
-                console.log("PIERDE UI 1")
-                this.pierde()
+                this.pierde2()
             }
         });
         
@@ -66,23 +69,23 @@ export default class UIscene extends Phaser.Scene
         this.tiempo = this.tiempo - 1;
         this.registry.set("tiempo", this.tiempo)
         if (this.tiempo == -1){
-            this.scene.pause("ui")
-            this.scene.pause("game")
-            this.scene.run('gananivel');
+            this.scene.pause("ui2")
+            this.scene.pause("game2")
+            this.scene.run('gananivel2');
             console.log("gana")
         }
     }
 
-    pierde(){
+    pierde2(){
         console.log("cambio de escena")
-        this.scene.pause("ui")
-        this.scene.pause("game")
-        this.scene.run('pierdenivel')
+        this.scene.pause("ui2")
+        this.scene.pause("game2")
+        this.scene.run('pierdenivel2')
     }
 
 
 
-    private setContaminacionBar(data: number)
+    private setContaminacionBar2(data: number)
     {
         const width = 400
         this.percent = Phaser.Math.Clamp(data, 0,100) / 100
