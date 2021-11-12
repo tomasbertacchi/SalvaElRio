@@ -71,10 +71,15 @@ export default class game extends Phaser.Scene
             //     faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
             // });
             /////////////////////////////////a//
+<<<<<<< HEAD
            
             
             this.olas = this.physics.add.group({
             })
+=======
+            
+        this.ola1 = this.physics.add.sprite(300,300, "ola1")
+>>>>>>> 1033031dd916f700b9c8543b43b521451683cc60
             
             ////////////BARCO////////////////
             this.barco = this.physics.add.sprite(200,500 ,"barco")

@@ -21,6 +21,11 @@ export default class gananivel extends Phaser.Scene{
         .setInteractive()
         .on('pointerdown', () => {this.scene.stop("game");this.scene.stop("ui");this.scene.stop("gananivel");this.scene.start("menu")})
 
+<<<<<<< HEAD
+=======
+        this.add.text(500, 745, getPhrase("ingamesalir"){color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65}))
+
+>>>>>>> 1033031dd916f700b9c8543b43b521451683cc60
         const boton_siguiente = this.add.image(1320, 780, "boton").setScale(0.6)
         .setInteractive()
         .on('pointerdown', () => {this.scene.stop("game");this.scene.stop("ui");this.scene.stop("pierdenivel");this.scene.start("game")})
