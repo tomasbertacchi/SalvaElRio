@@ -71,15 +71,10 @@ export default class game extends Phaser.Scene
             //     faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
             // });
             /////////////////////////////////a//
-<<<<<<< HEAD
            
             
             this.olas = this.physics.add.group({
             })
-=======
-            
-        this.ola1 = this.physics.add.sprite(300,300, "ola1")
->>>>>>> 1033031dd916f700b9c8543b43b521451683cc60
             
             ////////////BARCO////////////////
             this.barco = this.physics.add.sprite(200,500 ,"barco")
@@ -127,7 +122,7 @@ export default class game extends Phaser.Scene
         this.olas.create(2000, this.olasY, olasMath)
         this.olas.setVelocityX(-250)
         this.olas.playAnimation(olasMath)
-        
+
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath2 = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY2, olasMath2)
@@ -136,6 +131,7 @@ export default class game extends Phaser.Scene
     }
 
     onSecond4(){
+        
     }
 
     sumaPunto(barco, basura){
