@@ -15,6 +15,7 @@ export default class UIscene extends Phaser.Scene
     private cantidadContaminacion!: number
     private contaminacion: any
     private sonidoclick: any
+    private musica: any
 
 	constructor()
 	{
@@ -30,6 +31,14 @@ export default class UIscene extends Phaser.Scene
             volume: 0.5,
             loop:false,
         })
+
+        
+        this.musica = this.sound.add("musica1",{
+            volume:0.2,
+            loop:true,
+        })
+       
+        this.musica.play()
 
         this.tiempo = 10
         //this.texto_puntuacion = this.add.text(800,30, "Puntuacion: ",{fontFamily: "Courier", fontSize: 32, fontStyle:"bold"})
@@ -75,6 +84,7 @@ export default class UIscene extends Phaser.Scene
             this.scene.pause("ui")
             this.scene.pause("game")
             this.scene.run('gananivel');
+            this.musica.stop()
             console.log("gana")
         }
     }
@@ -84,6 +94,7 @@ export default class UIscene extends Phaser.Scene
         this.scene.pause("ui")
         this.scene.pause("game")
         this.scene.run('pierdenivel')
+        this.musica.stop()
     }
 
 

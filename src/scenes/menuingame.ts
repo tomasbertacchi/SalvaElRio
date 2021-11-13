@@ -16,13 +16,13 @@ export default class menuingame extends Phaser.Scene{
         //botones
 
         if(!this.game.sound.mute){
-            this.sonidoOn = this.add.sprite(1920/2,170, "sonidoOn").setScale(0.05)
+            this.sonidoOn = this.add.sprite(1920/2,160, "sonidoOn").setScale(0.05)
             .setInteractive()
             .on("pointerdown", () =>{this.toggleMute()})
         }
         else {
             this.game.sound.mute = true;
-            this.sonidoOn = this.add.sprite(1920/2,180, "sonidoOff").setScale(0.05)
+            this.sonidoOn = this.add.sprite(1920/2,160, "sonidoOff").setScale(0.05)
             .setInteractive()
             .on("pointerdown", () =>{this.toggleMute()})
 

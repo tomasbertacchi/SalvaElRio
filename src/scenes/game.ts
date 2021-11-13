@@ -50,25 +50,13 @@ export default class game extends Phaser.Scene
             volume: 0.05
         })
 
-        this.musica = this.sound.add("musica1",{
-            volume:0.2,
-            loop:true,
-        })
-       
-        this.musica.play()
         this.sonidorio.play()
 
         ///////////////////////////TILEMAP//////////////////
         const map = this.make.tilemap({key: "nivel1"})  //carga tilemap
         const tileset = map.addTilesetImage("tileset", "tileset")  //carga tileset
         const terreno = map.createLayer("terreno", tileset) //carga layer
-        terreno.setCollisionByProperty({borde: true}) //colision por propiedad
-        const objectsLayer = map.getObjectLayer('spawner')
         /////////////////////////////////////////////////
-        
-        
-        
-        
         
         
         
