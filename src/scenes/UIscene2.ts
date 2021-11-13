@@ -12,8 +12,9 @@ export default class UIscene2 extends Phaser.Scene
     private puntuacion!: Phaser.GameObjects.Text
     private graphics!: Phaser.GameObjects.Graphics
     private percent!: any
-    private cantidadContaminacion2!: number
+    private cantidadContaminacion!: number
     private contaminacion: any
+    private sonidoclick: any
 	constructor()
 	{
 		super('ui2')
@@ -21,13 +22,14 @@ export default class UIscene2 extends Phaser.Scene
 
     create(){
 
-        this.scene.stop("pierdenivel")
-        this.scene.stop("game")
-        this.scene.stop("ui")
-
         this.graphics = this.add.graphics()
-        this.setContaminacionBar2(100)
-        this.cantidadContaminacion2 = 100
+        this.setContaminacionBar(100)
+        this.cantidadContaminacion = 100
+
+        this.sonidoclick = this.sound.add("sonidoclick",{
+            volume: 0.5,
+            loop:false,
+        })
 
 
         this.tiempo = 50
@@ -45,8 +47,9 @@ export default class UIscene2 extends Phaser.Scene
         
         this.add.image(1850, 50, "tuerca").setScale(0.15)
         .setInteractive()
-        .on("pointerdown", () => {this.scene.run("menuingame2");this.scene.pause("game2");this.scene.pause("ui2")})
+        .on("pointerdown", () => {this.scene.run("menuingame");this.scene.pause("game2")})
         .on("pointerdown", () => console.log("abre menu ingame"))
+        .on("pointerdown", () => this.sonidoclick.play())
         //hacer menu ingame
         
         this.registry.events.on('changedata', (parent, key, data) => { 
@@ -54,9 +57,9 @@ export default class UIscene2 extends Phaser.Scene
             this.puntuacion.setText(data)
             
             if (key === "restapuntos2")
-            this.setContaminacionBar2(data)
+            this.setContaminacionBar(data)
             if((data) <= -5){
-                this.pierde2()
+                this.pierde()
             }
         });
         
@@ -76,7 +79,7 @@ export default class UIscene2 extends Phaser.Scene
         }
     }
 
-    pierde2(){
+    pierde(){
         console.log("cambio de escena")
         this.scene.pause("ui2")
         this.scene.pause("game2")
@@ -85,7 +88,7 @@ export default class UIscene2 extends Phaser.Scene
 
 
 
-    private setContaminacionBar2(data: number)
+    private setContaminacionBar(data: number)
     {
         const width = 400
         this.percent = Phaser.Math.Clamp(data, 0,100) / 100

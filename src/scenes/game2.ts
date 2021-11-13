@@ -16,6 +16,10 @@ export default class game2 extends Phaser.Scene
     private olasY: any
     private olasY2: any
     private olasList: any
+    private sonidorio: any
+    private sonidoclick: any
+    private sonidobasura: any
+    private musica: any
 	constructor()
 	{
 		super('game2')
@@ -35,6 +39,15 @@ export default class game2 extends Phaser.Scene
         this.scene.run("ui2")
         this.puntuacionbasura = 0;
         this.contaminacion = 100
+
+        this.sonidobasura = this.sound.add("sonidobasura",{
+            loop: false,
+            volume: 0.4
+        })
+        this.sonidorio = this.sound.add("sonidorio",{
+            volume: 0.05
+        })
+
         
         ///////////////////////////TILEMAP//////////////////
         const map = this.make.tilemap({key: "nivel2"})  //carga tilemap

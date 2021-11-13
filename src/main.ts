@@ -39,7 +39,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			debug: false,
 		}
 	},
-	scene: [prepreloader,preloader, idioma, mainmenu, tutorial, informacion, creditos, game, game2, UIscene,UIscene2, menuingame, menuingame2, gananivel, pierdenivel, gananivel2, pierdenivel2, creditos2]
+	scene: [preloader,idioma, mainmenu, tutorial, informacion, creditos, game, game2, UIscene,UIscene2, menuingame, menuingame2, gananivel, pierdenivel, gananivel2, pierdenivel2, creditos2]
 }
 
 export default new Phaser.Game(config)

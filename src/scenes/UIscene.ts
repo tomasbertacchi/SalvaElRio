@@ -14,6 +14,8 @@ export default class UIscene extends Phaser.Scene
     private percent!: any
     private cantidadContaminacion!: number
     private contaminacion: any
+    private sonidoclick: any
+
 	constructor()
 	{
 		super('ui')
@@ -24,9 +26,12 @@ export default class UIscene extends Phaser.Scene
         this.graphics = this.add.graphics()
         this.setContaminacionBar(100)
         this.cantidadContaminacion = 100
+        this.sonidoclick = this.sound.add("sonidoclick",{
+            volume: 0.5,
+            loop:false,
+        })
 
-
-        this.tiempo = 50
+        this.tiempo = 10
         //this.texto_puntuacion = this.add.text(800,30, "Puntuacion: ",{fontFamily: "Courier", fontSize: 32, fontStyle:"bold"})
         this.add.text(800,30, getPhrase("salvaelriopuntos"){color: "white", fontStyle: "bold", fontFamily: "Courier", fontSize: 32}))
 
@@ -42,6 +47,7 @@ export default class UIscene extends Phaser.Scene
         this.add.image(1850, 50, "tuerca").setScale(0.15)
         .setInteractive()
         .on("pointerdown", () => {this.scene.run("menuingame");this.scene.pause("game");this.scene.pause("ui")})
+        .on("pointerdown", () => this.sonidoclick.play())
         .on("pointerdown", () => console.log("abre menu ingame"))
         //hacer menu ingame
         

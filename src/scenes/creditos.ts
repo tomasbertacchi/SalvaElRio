@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import { getPhrase } from '~/services/translations'
 
 export default class creditos extends Phaser.Scene{
+    private sonidoclick: any
     constructor(){
         super("creditos");
     }
@@ -12,9 +13,16 @@ export default class creditos extends Phaser.Scene{
     //creditossalvaelrio1
     create(){
         this.add.image(0,0, "creditos").setOrigin(0,0)
+
+        this.sonidoclick= this.sound.add("sonidoclick",{
+            volume:0.5,
+            loop: false
+        })
+
         this.add.image(200, 1010, "boton").setScale(0.6)
         .setInteractive()
         .on('pointerdown', () => this.scene.start("menu"))
+        .on('pointerdown', () => this.sonidoclick.play())
         this.add.text(146, 990, getPhrase("VOLVER"){color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 32}
         
         this.add.text(562, 95, getPhrase("NUESTRO EQUIPO"){color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 90})

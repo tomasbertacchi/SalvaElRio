@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import { getPhrase } from '~/services/translations'
 
 export default class menuingame2 extends Phaser.Scene{
+    private sonidoOn: any
     constructor(){
         super("menuingame2");
     }
@@ -12,6 +13,19 @@ export default class menuingame2 extends Phaser.Scene{
         //background
         this.add.image(1920/2,1080/2, "menu_ingame")
 
+
+        if(!this.game.sound.mute){
+            this.sonidoOn = this.add.sprite(1920/2,170, "sonidoOn").setScale(0.05)
+            .setInteractive()
+            .on("pointerdown", () =>{this.toggleMute()})
+        }
+        else {
+            this.game.sound.mute = true;
+            this.sonidoOn = this.add.sprite(1920/2,180, "sonidoOff").setScale(0.05)
+            .setInteractive()
+            .on("pointerdown", () =>{this.toggleMute()})
+
+        }
         //botones
         const boton_reanudar = this.add.image(1920 / 2, 300, "botonazul")
         .setInteractive()
@@ -30,11 +44,16 @@ export default class menuingame2 extends Phaser.Scene{
 
 
     }
-    
-    update(){
 
-
-
+    toggleMute() {
+        if (!this.game.sound.mute) {
+            this.game.sound.mute = true;
+            console.log("muted")
+            this.sonidoOn.setTexture("sonidoOff")
+        } else {
+            this.game.sound.mute = false;
+            console.log("nao nao")
+            this.sonidoOn.setTexture("sonidoOn")
+        }
     }
-
 }
