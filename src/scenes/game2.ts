@@ -15,6 +15,7 @@ export default class game2 extends Phaser.Scene
     private contaminacion!: number
     private olasY: any
     private olasY2: any
+    private olasY3: any
     private olasList: any
     private sonidoclick: any
     private musica: any
@@ -42,7 +43,7 @@ export default class game2 extends Phaser.Scene
         
         ///////////////////////////TILEMAP//////////////////
         const map = this.make.tilemap({key: "nivel2"})  //carga tilemap
-        const tileset = map.addTilesetImage("tileset", "tileset")  //carga tileset
+        const tileset = map.addTilesetImage("tileset3", "tileset3")  //carga tileset
         const terreno = map.createLayer("terreno", tileset) //carga layer
         terreno.setCollisionByProperty({borde: true}) //colision por propiedad
         const objectsLayer = map.getObjectLayer('spawner')
@@ -122,14 +123,21 @@ export default class game2 extends Phaser.Scene
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY, olasMath)
-        this.olas.setVelocityX(-300)
+        this.olas.setVelocityX(-250)
         this.olas.playAnimation(olasMath)
 
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath2 = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY2, olasMath2)
-        this.olas.setVelocityX(-300)
+        this.olas.setVelocityX(-250)
         this.olas.playAnimation(olasMath2)
+
+
+        this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
+        const olasMath3 = this.olasList[Phaser.Math.Between(0,4)]
+        this.olas.create(2000, this.olasY3, olasMath3)
+        this.olas.setVelocityX(-250)
+        this.olas.playAnimation(olasMath3)
     }
 
     onSecond4(){
@@ -151,6 +159,7 @@ export default class game2 extends Phaser.Scene
     numerosrandom2(){
         this.olasY= Phaser.Math.Between(140, 950)
         this.olasY2= Phaser.Math.Between(140, 950)
+        this.olasY3= Phaser.Math.Between(140, 950)
     }
 
     restaPunto(barra, basura){

@@ -10,6 +10,7 @@ export default class preloader extends Phaser.Scene
 	preload()
     {
         this.load.image("tileset", "assets/tileset.png")
+        this.load.image("tileset3", "assets/tileset3.png")
         this.load.tilemapTiledJSON("nivel1", "assets/nivel1.json")
         this.load.tilemapTiledJSON("nivel2", "assets/nivel2.json")
         this.load.tilemapTiledJSON("nivel3", "assets/nivel3.json")
@@ -47,7 +48,7 @@ export default class preloader extends Phaser.Scene
         this.load.image("basura8", "./images/basura8.png")
         this.load.image("basura9", "./images/basura9.png")
         this.load.image("basura10", "./images/basura10.png")
-    
+        this.load.image("basura11", "./images/basura11.png")
         this.load.image("piedra", "./images/piedra.png")
         this.load.image("rama", "./images/rama.png")
         this.load.image("rama2", "./images/rama2.png")
