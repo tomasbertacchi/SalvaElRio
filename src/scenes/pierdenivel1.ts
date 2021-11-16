@@ -3,7 +3,7 @@ import { getPhrase } from '~/services/translations'
 
 export default class pierdenivel extends Phaser.Scene{
     private puntuacion!: Phaser.GameObjects.Text
-
+    private sonidoclick: any
     constructor(){
         super("pierdenivel");
     }
@@ -11,7 +11,10 @@ export default class pierdenivel extends Phaser.Scene{
     }
     
     create(){
-
+        this.sonidoclick = this.sound.add("sonidoclick",{
+            volume: 0.5,
+            loop:false,
+        })
         this.puntuacion = this.registry.get("agarrabasura") + this.registry.get("agarrabasura2")
 
         this.add.image(1920/2, 1080/2, "gananivel")

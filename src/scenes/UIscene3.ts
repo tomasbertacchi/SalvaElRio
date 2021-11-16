@@ -1,7 +1,7 @@
 import barracontaminacion from "./barracontaminacion"
 import { getPhrase } from '~/services/translations'
 
-export default class UIscene extends Phaser.Scene
+export default class UIscene3 extends Phaser.Scene
 {   
 
     private tiempo!: any
@@ -23,14 +23,15 @@ export default class UIscene extends Phaser.Scene
     private escape:any
 	constructor()
 	{
-		super('ui')
+		super('ui3')
 	}
 
     create(){
 
         this.graphics = this.add.graphics()
-        this.cantidadContaminacion = 100
         this.setContaminacionBar(100)
+        this.cantidadContaminacion = 100
+
         this.sonidoclick = this.sound.add("sonidoclick",{
             volume: 0.5,
             loop:false,
@@ -64,10 +65,11 @@ export default class UIscene extends Phaser.Scene
             volume: 0.4,
             loop:false,
         })
-       
+
         this.musica.play()
         this.sonidorio.play()
 
+        
         this.tiempo = 25
         //this.texto_puntuacion = this.add.text(800,30, "Puntuacion: ",{fontFamily: "Courier", fontSize: 32, fontStyle:"bold"})
         this.add.text(800,30, getPhrase("salvaelriopuntos"),{color: "white", fontStyle: "bold", fontFamily: "Courier", fontSize: 32})
@@ -83,25 +85,31 @@ export default class UIscene extends Phaser.Scene
         
         this.add.image(1850, 50, "tuerca").setScale(0.15)
         .setInteractive()
-        .on("pointerdown", () => {this.scene.run("menuingame");this.scene.pause("game");this.scene.pause("ui")})
-        .on("pointerdown", () => this.sonidoclick.play())
+        .on("pointerdown", () => {this.scene.run("menuingame3");this.scene.pause("game3");this.scene.pause("ui3")})
         .on("pointerdown", () => console.log("abre menu ingame"))
+        .on("pointerdown", () => this.sonidoclick.play())
         //hacer menu ingame
         
         this.registry.events.on('changedata', (parent, key, data) => { 
-            if (key === 'agarrabasura'){
+            if (key === 'agarrabasura3'){
                 this.puntuacion.setText(data)
                 this.sonidobasura.play()
+
             }
             
-            if (key === "restapuntos"){
+            if (key === "restapuntos3"){
+                this.setContaminacionBar(data)
+
+            }
+            if((data) <= -2){
+                this.pierde()
+            }
+
+            if (key === "restapuntos4"){
                 this.escape.play()
                 this.setContaminacionBar(data)
             }
-            if((data) <= -2){
-                console.log("PIERDE UI 1")
-                this.pierde()
-            }
+          
         });
         
     }
@@ -113,11 +121,11 @@ export default class UIscene extends Phaser.Scene
         this.tiempo = this.tiempo - 1;
         this.registry.set("tiempo", this.tiempo)
         if (this.tiempo == -1){
-            this.scene.pause("ui")
-            this.scene.pause("game")
-            this.scene.run('gananivel');
+            this.scene.pause("ui3")
+            this.scene.pause("game3")
+            this.scene.run('gananivel3');
             this.sonidovictoria.play()
-            this.musica.stop()
+            this.musica.stop();
             this.sonidorio.stop();
             console.log("gana")
         }
@@ -125,9 +133,9 @@ export default class UIscene extends Phaser.Scene
 
     pierde(){
         console.log("cambio de escena")
-        this.scene.pause("ui")
-        this.scene.pause("game")
-        this.scene.run('pierdenivel')
+        this.scene.pause("ui3")
+        this.scene.pause("game3")
+        this.scene.run('pierdenivel3')
         this.sonidoderrota.play()
         this.musica.stop()
         this.sonidorio.stop();

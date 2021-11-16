@@ -1,12 +1,14 @@
 import Phaser from 'phaser'
 import PlayerController from './playercontroller'
 
-export default class game2 extends Phaser.Scene
+export default class game3 extends Phaser.Scene
 {
     private cursores!: Phaser.Types.Input.Keyboard.CursorKeys
     private barco!: Phaser.Physics.Arcade.Sprite
     private olas!: Phaser.Physics.Arcade.Group
     private basura!: Phaser.Physics.Arcade.Group
+    private obstaculo!: Phaser.Physics.Arcade.Group
+    private obstaculoY: any
     private velocidad: any
     private spawny: any
     private playerController?: PlayerController
@@ -18,9 +20,10 @@ export default class game2 extends Phaser.Scene
     private olasList: any
     private sonidoclick: any
     private musica: any
+
 	constructor()
 	{
-		super('game2')
+		super('game3')
 	}
 
     init(){
@@ -33,15 +36,15 @@ export default class game2 extends Phaser.Scene
     
     create()
     {
-        this.scene.stop("ui")
-        this.scene.run("ui2")
+        this.scene.stop("ui2")
+        this.scene.run("ui3")
         this.puntuacionbasura = 0;
         this.contaminacion = 100
 
 
         
         ///////////////////////////TILEMAP//////////////////
-        const map = this.make.tilemap({key: "nivel2"})  //carga tilemap
+        const map = this.make.tilemap({key: "nivel3"})  //carga tilemap
         const tileset = map.addTilesetImage("tileset", "tileset")  //carga tileset
         const terreno = map.createLayer("terreno", tileset) //carga layer
         terreno.setCollisionByProperty({borde: true}) //colision por propiedad
@@ -53,13 +56,15 @@ export default class game2 extends Phaser.Scene
 
         this.basura = this.physics.add.group({
         })
+
+        this.obstaculo = this.physics.add.group({})
         
         ////////////BARCO////////////////
         this.barco = this.physics.add.sprite(200,500 ,"barco")
         this.barco.setSize(80,80) ////CAMBIO/////
         this.physics.add.collider(this.barco, terreno) //COLISIONES BARCO TERRENO
         this.physics.add.overlap(this.barco, this.basura, this.sumaPunto, undefined, this)
-        
+        this.physics.add.overlap(this.barco, this.obstaculo, this.chocaObstaculo, undefined, this)
         this.playerController = new PlayerController(this, this.barco, this.cursores)
         
         
@@ -68,6 +73,7 @@ export default class game2 extends Phaser.Scene
         this.time.addEvent({ delay: 1200, callback: this.numerosrandom, callbackScope: this, loop: true });
         this.time.addEvent({ delay: 1200, callback: this.onSecond2, callbackScope: this, loop: true });
         this.time.addEvent({ delay: 5000, callback: this.onSecond3, callbackScope: this, loop: true });
+        this.time.addEvent({ delay: 2500, callback: this.onSecond4, callbackScope: this, loop: true });
         ////////////////////////
         
         this.barra = this.physics.add.staticGroup()
@@ -113,7 +119,7 @@ export default class game2 extends Phaser.Scene
         const spriteList = ["basura1", "basura2", "basura3", "basura4","basura5","basura6","basura7","basura8","basura9","basura10","basura11"]
         const spriteEnemy = spriteList[Phaser.Math.Between(0,10)]
         this.basura.create(2000, this.spawny, spriteEnemy)
-        this.basura.setVelocityX(-300)
+        this.basura.setVelocityX(-400)
 
     }
 
@@ -122,25 +128,38 @@ export default class game2 extends Phaser.Scene
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY, olasMath)
-        this.olas.setVelocityX(-300)
+        this.olas.setVelocityX(-400)
         this.olas.playAnimation(olasMath)
 
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath2 = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY2, olasMath2)
-        this.olas.setVelocityX(-300)
+        this.olas.setVelocityX(-400)
         this.olas.playAnimation(olasMath2)
     }
 
-    onSecond4(){
-        
+    onSecond4(barco, obstaculo){
+        this.numerosrandom3()
+        const obstaculosList = ["piedra", "rama", "rama2"]
+        const obstaculosMath = obstaculosList[Phaser.Math.Between(0,2)]
+        this.obstaculo.create(2000, this.obstaculoY, obstaculosMath)
+        this.obstaculo.setVelocityX(-250)
+
     }
 
     sumaPunto(barco, basura){
         console.log(basura)
         basura.destroy()
         this.puntuacionbasura += 1
-        this.registry.set("agarrabasura2", this.puntuacionbasura)
+        this.registry.set("agarrabasura3", this.puntuacionbasura)
+    }
+
+    chocaObstaculo(barco, obstaculo){
+        console.log(obstaculo)
+        obstaculo.destroy()
+        this.contaminacion -=15
+        this.registry.set("restapuntos4", this.contaminacion)
+        console.log(this.contaminacion)
     }
 
     numerosrandom(){
@@ -153,10 +172,15 @@ export default class game2 extends Phaser.Scene
         this.olasY2= Phaser.Math.Between(140, 950)
     }
 
+    
+    numerosrandom3(){
+        this.obstaculoY = Phaser.Math.Between(140, 950)
+    }
+
     restaPunto(barra, basura){
         basura.destroy()
         this.contaminacion -=10
-        this.registry.set("restapuntos2", this.contaminacion)
+        this.registry.set("restapuntos3", this.contaminacion)
         console.log(this.contaminacion)
     }
 

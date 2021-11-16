@@ -12,6 +12,7 @@ export default class preloader extends Phaser.Scene
         this.load.image("tileset", "assets/tileset.png")
         this.load.tilemapTiledJSON("nivel1", "assets/nivel1.json")
         this.load.tilemapTiledJSON("nivel2", "assets/nivel2.json")
+        this.load.tilemapTiledJSON("nivel3", "assets/nivel3.json")
         this.load.image("barco", "images/barco.png")
         this.load.image("boton", "images/boton.png")
         this.load.image("botonES", "images/boton_ES.png")
@@ -43,6 +44,13 @@ export default class preloader extends Phaser.Scene
         this.load.image("basura5", "./images/basura5.png")
         this.load.image("basura6", "./images/basura6.png")
         this.load.image("basura7", "./images/basura7.png")
+        this.load.image("basura8", "./images/basura8.png")
+        this.load.image("basura9", "./images/basura9.png")
+        this.load.image("basura10", "./images/basura10.png")
+    
+        this.load.image("piedra", "./images/piedra.png")
+        this.load.image("rama", "./images/rama.png")
+        this.load.image("rama2", "./images/rama2.png")
         this.load.spritesheet("ola1", "./images/ola1.png",{frameWidth: 202, frameHeight: 202, endFrame: 4})
         this.load.spritesheet("ola2", "./images/ola2.png",{frameWidth: 202, frameHeight: 202, endFrame: 4})
         this.load.spritesheet("ola3", "./images/ola3.png",{frameWidth: 202, frameHeight: 202, endFrame: 4})
@@ -52,9 +60,13 @@ export default class preloader extends Phaser.Scene
         this.load.audio("sonidobasura", "./sfx/sonidobasura.mp3")
         this.load.audio("sonidoclick", "./sfx/sonidoclick.mp3")
         this.load.audio("musica1", "./sfx/musica1.mp3")
-
+        this.load.audio("derrota", "./sfx/derrota.mp3")
+        this.load.audio("escape", "./sfx/escape.wav")
+        this.load.audio("victoria", "./sfx/victoria.wav")
+        this.load.audio("musicamenu", "./sfx/musicamenu.mp3")
         this.registry.set("agarrabasura", 0)
         this.registry.set("agarrabasura2", 0)
+        this.registry.set("agarrabasura3", 0)
     }
 
     create()

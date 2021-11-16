@@ -15,6 +15,12 @@ export default class UIscene2 extends Phaser.Scene
     private cantidadContaminacion!: number
     private contaminacion: any
     private sonidoclick: any
+    private musica: any
+    private sonidorio: any
+    private sonidobasura: any
+    private sonidovictoria: any
+    private sonidoderrota: any
+    private escape: any
 	constructor()
 	{
 		super('ui2')
@@ -31,8 +37,39 @@ export default class UIscene2 extends Phaser.Scene
             loop:false,
         })
 
+        this.musica = this.sound.add("musica1",{
+            volume:0.2,
+            loop:true,
+        })
 
-        this.tiempo = 50
+        this.sonidobasura = this.sound.add("sonidobasura",{
+            loop: false,
+            volume: 0.4
+
+        })
+        this.sonidorio = this.sound.add("sonidorio",{
+            volume: 0.02,
+            loop:true,
+        })
+
+        this.sonidovictoria = this.sound.add("victoria",{
+            volume: 0.7,
+            loop: false,
+        })
+       this.sonidoderrota = this.sound.add("derrota",{
+        volume: 0.7,
+        loop: false,
+        })
+
+        this.escape = this.sound.add("escape",{
+            volume: 0.4,
+            loop:false,
+        })
+
+        this.musica.play()
+        this.sonidorio.play()
+
+        this.tiempo = 25
         //this.texto_puntuacion = this.add.text(800,30, "Puntuacion: ",{fontFamily: "Courier", fontSize: 32, fontStyle:"bold"})
         this.add.text(800,30, getPhrase("salvaelriopuntos"){color: "white", fontStyle: "bold", fontFamily: "Courier", fontSize: 32}))
 
@@ -47,18 +84,24 @@ export default class UIscene2 extends Phaser.Scene
         
         this.add.image(1850, 50, "tuerca").setScale(0.15)
         .setInteractive()
-        .on("pointerdown", () => {this.scene.run("menuingame");this.scene.pause("game2")})
+        .on("pointerdown", () => {this.scene.run("menuingame2");this.scene.pause("game2");this.scene.pause("ui2")})
         .on("pointerdown", () => console.log("abre menu ingame"))
         .on("pointerdown", () => this.sonidoclick.play())
         //hacer menu ingame
         
         this.registry.events.on('changedata', (parent, key, data) => { 
-            if (key === 'agarrabasura2')
-            this.puntuacion.setText(data)
+            if (key === 'agarrabasura2'){
+                this.puntuacion.setText(data)
+                this.sonidobasura.play()
+
+            }
             
-            if (key === "restapuntos2")
-            this.setContaminacionBar(data)
-            if((data) <= -5){
+            if (key === "restapuntos2"){
+                this.escape.play()
+                this.setContaminacionBar(data)
+
+            }
+            if((data) <= -2){
                 this.pierde()
             }
         });
@@ -75,6 +118,9 @@ export default class UIscene2 extends Phaser.Scene
             this.scene.pause("ui2")
             this.scene.pause("game2")
             this.scene.run('gananivel2');
+            this.sonidovictoria.play()
+            this.musica.stop()
+            this.sonidorio.stop();
             console.log("gana")
         }
     }
@@ -83,6 +129,9 @@ export default class UIscene2 extends Phaser.Scene
         console.log("cambio de escena")
         this.scene.pause("ui2")
         this.scene.pause("game2")
+        this.sonidoderrota.play()
+        this.musica.stop()
+        this.sonidorio.stop();
         this.scene.run('pierdenivel2')
     }
 
@@ -91,7 +140,7 @@ export default class UIscene2 extends Phaser.Scene
     private setContaminacionBar(data: number)
     {
         const width = 400
-        this.percent = Phaser.Math.Clamp(data, 0,100) / 100
+        this.percent = Phaser.Math.Clamp(data,0,100) / 100
         this.graphics.clear()
         this.graphics.fillStyle(0x808080)
         this.graphics.fillRoundedRect(40,40,width,20,5)

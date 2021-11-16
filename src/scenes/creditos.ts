@@ -23,7 +23,7 @@ export default class creditos extends Phaser.Scene{
         .setInteractive()
         .on('pointerdown', () => this.scene.start("menu"))
         .on('pointerdown', () => this.sonidoclick.play())
-        this.add.text(146, 990, getPhrase("VOLVER"){color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 32}
+        this.add.text(146, 990, getPhrase("VOLVER"){color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 32})
         
         this.add.text(562, 95, getPhrase("NUESTRO EQUIPO"){color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 90})
 

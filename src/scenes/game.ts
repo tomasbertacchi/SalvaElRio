@@ -17,9 +17,8 @@ export default class game extends Phaser.Scene
     private olasY2: any
     private olasY3: any
     private olasList: any
-    private sonidorio: any
     private sonidoclick: any
-    private sonidobasura: any
+    
     private musica: any
 
 	constructor()
@@ -42,15 +41,6 @@ export default class game extends Phaser.Scene
         this.puntuacionbasura = 0;
         this.contaminacion = 100
 
-        this.sonidobasura = this.sound.add("sonidobasura",{
-            loop: false,
-            volume: 0.4
-        })
-        this.sonidorio = this.sound.add("sonidorio",{
-            volume: 0.05
-        })
-
-        this.sonidorio.play()
 
         ///////////////////////////TILEMAP//////////////////
         const map = this.make.tilemap({key: "nivel1"})  //carga tilemap
@@ -142,8 +132,8 @@ export default class game extends Phaser.Scene
   
     onSecond2(){
         this.numerosrandom()
-        const spriteList = ["basura1", "basura2", "basura3", "basura4","basura5","basura6","basura7"]
-        const spriteEnemy = spriteList[Phaser.Math.Between(0,6)]
+        const spriteList = ["basura1", "basura2", "basura3", "basura4","basura5","basura6","basura7","basura8","basura9","basura10", "basura11"]
+        const spriteEnemy = spriteList[Phaser.Math.Between(0,10)]
         this.basura.create(2000, this.spawny, spriteEnemy)
         this.basura.setVelocityX(-250)
 
@@ -157,7 +147,6 @@ export default class game extends Phaser.Scene
     sumaPunto(barco, basura){
         console.log(basura)
         basura.destroy()
-        this.sonidobasura.play()
         this.puntuacionbasura += 1
         this.registry.set("agarrabasura", this.puntuacionbasura)
     }

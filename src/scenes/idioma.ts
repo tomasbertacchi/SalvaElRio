@@ -20,7 +20,6 @@ export default class idioma extends Phaser.Scene{
     }
 
     create(){
-
         console.log("IDIOMA")
         this.add.image(0,0, "main_menu").setOrigin(0,0)
 
