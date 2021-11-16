@@ -13,15 +13,20 @@ export default class idioma extends Phaser.Scene{
     private updatedTextInScene
     private updatedString = 'COMENZAR'
     private wasChangedLanguage = TODO
+    private sonidoclick: any
     
     constructor(){
         super("idioma");
     }
 
     create(){
-
         console.log("IDIOMA")
         this.add.image(0,0, "main_menu").setOrigin(0,0)
+
+        this.sonidoclick= this.sound.add("sonidoclick",{
+            volume:0.5,
+            loop: false
+        })
 
         const { width, height } = this.scale
 
@@ -31,6 +36,7 @@ export default class idioma extends Phaser.Scene{
 			.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
 				this.getTranslations(ES_AR), this.crearboton()
 			})
+            .on('pointerdown', () => this.sonidoclick.play())
 
 
         const buttonEnglish = this.add.image(width * 0.5, height * 0.30, "botonUS")
@@ -38,6 +44,8 @@ export default class idioma extends Phaser.Scene{
 			.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
 				this.getTranslations(EN_US), this.crearboton()
 			})
+            .on('pointerdown', () => this.sonidoclick.play())
+            
 
 
         const buttonPortuguese = this.add.image(width * 0.7, height * 0.30, "botonBR")
@@ -45,6 +53,7 @@ export default class idioma extends Phaser.Scene{
 			.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
 				this.getTranslations(PT_BR), this.crearboton()
 			})
+            .on('pointerdown', () => this.sonidoclick.play())
 
 
     }
@@ -71,6 +80,7 @@ export default class idioma extends Phaser.Scene{
         const boton = this.add.image(1920 / 2, 550, "boton")
         .setInteractive()
         .on('pointerdown', () => this.scene.start("menu"))
+        .on('pointerdown', () => this.sonidoclick.play())
 
         this.updatedTextInScene = this.add.text(886, 530, getPhrase(this.updatedString) {color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 32}    )
 

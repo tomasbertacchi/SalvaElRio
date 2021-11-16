@@ -15,7 +15,12 @@ export default class game extends Phaser.Scene
     private contaminacion!: number
     private olasY: any
     private olasY2: any
+    private olasY3: any
     private olasList: any
+    private sonidoclick: any
+    
+    private musica: any
+
 	constructor()
 	{
 		super('game')
@@ -35,18 +40,13 @@ export default class game extends Phaser.Scene
         //this.scene.run("puntuacion")
         this.puntuacionbasura = 0;
         this.contaminacion = 100
-        
+
+
         ///////////////////////////TILEMAP//////////////////
         const map = this.make.tilemap({key: "nivel1"})  //carga tilemap
         const tileset = map.addTilesetImage("tileset", "tileset")  //carga tileset
         const terreno = map.createLayer("terreno", tileset) //carga layer
-        terreno.setCollisionByProperty({borde: true}) //colision por propiedad
-        const objectsLayer = map.getObjectLayer('spawner')
         /////////////////////////////////////////////////
-        
-        
-        
-        
         
         
         
@@ -70,7 +70,7 @@ export default class game extends Phaser.Scene
         
         this.time.addEvent({ delay: 1200, callback: this.numerosrandom, callbackScope: this, loop: true });
         this.time.addEvent({ delay: 1200, callback: this.onSecond2, callbackScope: this, loop: true });
-        this.time.addEvent({ delay: 5000, callback: this.onSecond3, callbackScope: this, loop: true });
+        this.time.addEvent({ delay: 3000, callback: this.onSecond3, callbackScope: this, loop: true });
         ////////////////////////
         
         this.barra = this.physics.add.staticGroup()
@@ -108,16 +108,6 @@ export default class game extends Phaser.Scene
 
 
     }
-  
-    onSecond2(){
-        this.numerosrandom()
-        const spriteList = ["basura1", "basura2", "basura3", "basura4","basura5","basura6","basura7"]
-        const spriteEnemy = spriteList[Phaser.Math.Between(0,6)]
-        this.basura.create(2000, this.spawny, spriteEnemy)
-        this.basura.setVelocityX(-250)
-
-    }
-
     onSecond3(){
         this.numerosrandom2()
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
@@ -131,7 +121,24 @@ export default class game extends Phaser.Scene
         this.olas.create(2000, this.olasY2, olasMath2)
         this.olas.setVelocityX(-250)
         this.olas.playAnimation(olasMath2)
+
+
+        this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
+        const olasMath3 = this.olasList[Phaser.Math.Between(0,4)]
+        this.olas.create(2000, this.olasY3, olasMath3)
+        this.olas.setVelocityX(-250)
+        this.olas.playAnimation(olasMath3)
     }
+  
+    onSecond2(){
+        this.numerosrandom()
+        const spriteList = ["basura1", "basura2", "basura3", "basura4","basura5","basura6","basura7","basura8","basura9","basura10", "basura11"]
+        const spriteEnemy = spriteList[Phaser.Math.Between(0,10)]
+        this.basura.create(2000, this.spawny, spriteEnemy)
+        this.basura.setVelocityX(-250)
+
+    }
+
 
     onSecond4(){
         
@@ -152,6 +159,7 @@ export default class game extends Phaser.Scene
     numerosrandom2(){
         this.olasY= Phaser.Math.Between(140, 950)
         this.olasY2= Phaser.Math.Between(140, 950)
+        this.olasY3= Phaser.Math.Between(140, 950)
     }
 
     restaPunto(barra, basura){

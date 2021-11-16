@@ -1,7 +1,7 @@
 import barracontaminacion from "./barracontaminacion"
 import { getPhrase } from '~/services/translations'
 
-export default class UIscene2 extends Phaser.Scene
+export default class UIscene3 extends Phaser.Scene
 {   
 
     private tiempo!: any
@@ -20,10 +20,10 @@ export default class UIscene2 extends Phaser.Scene
     private sonidobasura: any
     private sonidovictoria: any
     private sonidoderrota: any
-    private escape: any
+    private escape:any
 	constructor()
 	{
-		super('ui2')
+		super('ui3')
 	}
 
     create(){
@@ -56,11 +56,11 @@ export default class UIscene2 extends Phaser.Scene
             volume: 0.7,
             loop: false,
         })
-       this.sonidoderrota = this.sound.add("derrota",{
-        volume: 0.7,
-        loop: false,
-        })
 
+        this.sonidoderrota = this.sound.add("derrota",{
+            volume: 0.7,
+            loop: false,
+        })
         this.escape = this.sound.add("escape",{
             volume: 0.4,
             loop:false,
@@ -69,41 +69,47 @@ export default class UIscene2 extends Phaser.Scene
         this.musica.play()
         this.sonidorio.play()
 
-        this.tiempo = 4
+
+        this.tiempo = 3
         //this.texto_puntuacion = this.add.text(800,30, "Puntuacion: ",{fontFamily: "Courier", fontSize: 32, fontStyle:"bold"})
-        this.add.text(800,30, getPhrase("salvaelriopuntos"){color: "white", fontStyle: "bold", fontFamily: "Courier", fontSize: 32}))
+        this.add.text(800,30, getPhrase("salvaelriopuntos"),{color: "white", fontStyle: "bold", fontFamily: "Courier", fontSize: 32})
 
         this.puntuacion = this.add.text(1035,30, "0" ,{fontFamily: "Courier", fontSize: 32, fontStyle:"bold"})
         this.textotiempo = this.time.addEvent({ delay: 1000, callback: this.onSecond, callbackScope: this, loop: true });
 
         this.numero_tiempo = this.add.text(1650, 30, this.tiempo, {fontFamily: 'Courier', fontSize: 32, fontStyle:"bold"})
         //this.numero_tiempo = this.add.text(1300, 30, 'Tiempo restante: ', { fontFamily: 'Courier', fontSize: 32, fontStyle:"bold"});
-        this.add.text(1300, 30, getPhrase("salvaelriotiempo"){color: "white", fontStyle: "bold", fontFamily: "Courier", fontSize: 32}))
+        this.add.text(1300, 30, getPhrase("salvaelriotiempo"),{color: "white", fontStyle: "bold", fontFamily: "Courier", fontSize: 32})
 
         //TUERCA
         
         this.add.image(1850, 50, "tuerca").setScale(0.15)
         .setInteractive()
-        .on("pointerdown", () => {this.scene.run("menuingame2");this.scene.pause("game2");this.scene.pause("ui2")})
+        .on("pointerdown", () => {this.scene.run("menuingame3");this.scene.pause("game3");this.scene.pause("ui3")})
         .on("pointerdown", () => console.log("abre menu ingame"))
         .on("pointerdown", () => this.sonidoclick.play())
         //hacer menu ingame
         
         this.registry.events.on('changedata', (parent, key, data) => { 
-            if (key === 'agarrabasura2'){
+            if (key === 'agarrabasura3'){
                 this.puntuacion.setText(data)
                 this.sonidobasura.play()
 
             }
             
-            if (key === "restapuntos2"){
-                this.escape.play()
+            if (key === "restapuntos3"){
                 this.setContaminacionBar(data)
 
             }
             if((data) <= -2){
                 this.pierde()
             }
+
+            if (key === "restapuntos4"){
+                this.escape.play()
+                this.setContaminacionBar(data)
+            }
+          
         });
         
     }
@@ -115,11 +121,11 @@ export default class UIscene2 extends Phaser.Scene
         this.tiempo = this.tiempo - 1;
         this.registry.set("tiempo", this.tiempo)
         if (this.tiempo == -1){
-            this.scene.pause("ui2")
-            this.scene.pause("game2")
-            this.scene.run('gananivel2');
+            this.scene.pause("ui3")
+            this.scene.pause("game3")
+            this.scene.run('gananivel3');
             this.sonidovictoria.play()
-            this.musica.stop()
+            this.musica.stop();
             this.sonidorio.stop();
             console.log("gana")
         }
@@ -127,12 +133,12 @@ export default class UIscene2 extends Phaser.Scene
 
     pierde(){
         console.log("cambio de escena")
-        this.scene.pause("ui2")
-        this.scene.pause("game2")
+        this.scene.pause("ui3")
+        this.scene.pause("game3")
+        this.scene.run('pierdenivel3')
         this.sonidoderrota.play()
         this.musica.stop()
         this.sonidorio.stop();
-        this.scene.run('pierdenivel2')
     }
 
 
@@ -140,7 +146,7 @@ export default class UIscene2 extends Phaser.Scene
     private setContaminacionBar(data: number)
     {
         const width = 400
-        this.percent = Phaser.Math.Clamp(data,0,100) / 100
+        this.percent = Phaser.Math.Clamp(data, 0,100) / 100
         this.graphics.clear()
         this.graphics.fillStyle(0x808080)
         this.graphics.fillRoundedRect(40,40,width,20,5)
