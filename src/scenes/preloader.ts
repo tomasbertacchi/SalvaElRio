@@ -50,7 +50,7 @@ export default class preloader extends Phaser.Scene
         this.load.image("basura10", "./images/basura10.png")
         this.load.image("basura11", "./images/basura11.png")
         this.load.image("piedra", "./images/piedra.png")
-        this.load.image("rama", "./images/rama.png")
+        this.load.image("rama3", "./images/rama3.png")
         this.load.image("rama2", "./images/rama2.png")
         this.load.image("tomas", "./images/tomas.png")
         this.load.image("julio", "./images/julio.png")

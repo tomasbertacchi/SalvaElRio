@@ -37,6 +37,8 @@ export default class game3 extends Phaser.Scene
     
     create()
     {
+        this.scene.stop("pierdenivel")
+        this.scene.stop("ui")
         this.scene.stop("ui2")
         this.scene.stop("pierdenivel2")
         this.scene.run("ui3")
@@ -149,7 +151,7 @@ export default class game3 extends Phaser.Scene
 
     onSecond4(barco, obstaculo){
         this.numerosrandom3()
-        const obstaculosList = ["piedra", "rama", "rama2"]
+        const obstaculosList = ["piedra", "rama3", "rama2"]
         const obstaculosMath = obstaculosList[Phaser.Math.Between(0,2)]
         this.obstaculo.create(2000, this.obstaculoY, obstaculosMath)
         this.obstaculo.setVelocityX(-250)
