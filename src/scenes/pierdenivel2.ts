@@ -24,7 +24,7 @@ export default class pierdenivel2 extends Phaser.Scene{
         .setInteractive()
         .on('pointerdown', () => {this.scene.stop("game2");this.scene.stop("ui2");this.scene.stop("pierdenivel2");this.scene.start("menu")})
 
-        this.add.text(500, 745, getPhrase("ingamesalir"){color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65}))
+        this.add.text(500, 745, getPhrase("ingamesalir"),{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65})
 
         const boton_reintentar = this.add.image(1320, 780, "boton").setScale(0.6)
         .setInteractive()

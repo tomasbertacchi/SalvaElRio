@@ -35,6 +35,7 @@ export default class game2 extends Phaser.Scene
     create()
     {
         this.scene.stop("ui")
+        this.scene.stop("pierdenivel")
         this.scene.run("ui2")
         this.puntuacionbasura = 0;
         this.contaminacion = 100
@@ -123,20 +124,20 @@ export default class game2 extends Phaser.Scene
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY, olasMath)
-        this.olas.setVelocityX(-250)
+        this.olas.setVelocityX(-300)
         this.olas.playAnimation(olasMath)
 
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath2 = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY2, olasMath2)
-        this.olas.setVelocityX(-250)
+        this.olas.setVelocityX(-300)
         this.olas.playAnimation(olasMath2)
 
 
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]
         const olasMath3 = this.olasList[Phaser.Math.Between(0,4)]
         this.olas.create(2000, this.olasY3, olasMath3)
-        this.olas.setVelocityX(-250)
+        this.olas.setVelocityX(-300)
         this.olas.playAnimation(olasMath3)
     }
 
