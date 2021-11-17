@@ -48,7 +48,7 @@ export default class menuingame extends Phaser.Scene{
 
         const boton_salir = this.add.image(1920 / 2, 800, "botonazul")
         .setInteractive()
-        .on('pointerdown', () => {this.scene.stop("game");this.scene.stop("ui");this.scene.start("menu")})
+        .on('pointerdown', () => {this.scene.stop("menuingame");this.scene.stop("ui");this.scene.stop("game");this.scene.start("menu")})
         .on("pointerdown", () => this.sonidoclick.play())
         this.add.text(865, 753, getPhrase("ingamesalir"),{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65})
 

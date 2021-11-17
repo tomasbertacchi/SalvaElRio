@@ -15,6 +15,22 @@ export default class mainmenu extends Phaser.Scene{
     
     create(){
         //background
+        this.scene.stop("ui")
+        this.scene.stop("ui2")
+        this.scene.stop("ui3")
+        this.scene.stop("pierdenivel")
+        this.scene.stop("pierdenivel2")
+        this.scene.stop("pierdenivel3")
+        this.scene.stop("menuingame")
+        this.scene.stop("menuingame2")
+        this.scene.stop("menuingame3")
+        this.scene.stop("gananivel")
+        this.scene.stop("gananivel2")
+        this.scene.stop("gananivel3")
+
+
+
+
         this.add.image(0,0, "main_menu").setOrigin(0,0)
 
         if(!this.game.sound.mute){

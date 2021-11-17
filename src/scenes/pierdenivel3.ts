@@ -24,13 +24,13 @@ export default class pierdenivel3 extends Phaser.Scene{
         .setInteractive()
         .on('pointerdown', () => {this.scene.stop("game3");this.scene.stop("ui3");this.scene.stop("pierdenivel3");this.scene.start("menu")})
 
-        this.add.text(500, 745, getPhrase("ingamesalir"){color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65}))
+        this.add.text(500, 745, getPhrase("ingamesalir"),{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65})
 
         const boton_reintentar = this.add.image(1320, 780, "boton").setScale(0.6)
         .setInteractive()
         .on('pointerdown', () => {this.scene.stop("game3");this.scene.stop("ui3");this.scene.stop("pierdenivel3");this.scene.start("game3")})
 
-        this.add.text(1220, 745, getPhrase("reintentarrio"),{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65})
+        this.add.text(1180, 745, getPhrase("reintentarrio"),{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65})
     }
 
 

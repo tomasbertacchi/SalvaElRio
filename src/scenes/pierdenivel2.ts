@@ -30,7 +30,7 @@ export default class pierdenivel2 extends Phaser.Scene{
         .setInteractive()
         .on('pointerdown', () => {this.scene.stop("game2");this.scene.stop("ui2");this.scene.stop("pierdenivel2");this.scene.start("game2")})
 
-        this.add.text(1220, 745, getPhrase("reintentarrio"),{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65})
+        this.add.text(1180, 745, getPhrase("reintentarrio"),{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65})
     }
 
 
