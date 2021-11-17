@@ -24,7 +24,6 @@ import menuingame3 from "./scenes/menuingame3"
 import UIscene3 from './scenes/UIscene3'
 import gananivel3 from "./scenes/gananivel3"
 import pierdenivel3 from "./scenes/pierdenivel3"
-import musica from "./scenes/musica"
 
 
 
@@ -48,7 +47,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			debug: false,
 		}
 	},
-	scene: [unraf, prepreloader, preloader,idioma, mainmenu,musica, tutorial, informacion, creditos, game, game2,game3, UIscene,UIscene2,UIscene3, menuingame, menuingame2, menuingame3, gananivel, pierdenivel, gananivel2, pierdenivel2, gananivel3, pierdenivel3, creditos2]
+	scene: [unraf, prepreloader, preloader,idioma, mainmenu, tutorial, informacion, creditos, game, game2,game3, UIscene,UIscene2,UIscene3, menuingame, menuingame2, menuingame3, gananivel, pierdenivel, gananivel2, pierdenivel2, gananivel3, pierdenivel3, creditos2]
 }
 
 export default new Phaser.Game(config)

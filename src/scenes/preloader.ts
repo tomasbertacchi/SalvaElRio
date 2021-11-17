@@ -56,6 +56,9 @@ export default class preloader extends Phaser.Scene
         this.load.image("julio", "./images/julio.png")
         this.load.image("alvaro", "./images/alvaro.png")
         this.load.image("gabriel", "./images/gabriel.png")
+        this.load.spritesheet("mover", "./images/mover.png",{frameWidth: 345, frameHeight: 261, endFrame: 13})
+        this.load.spritesheet("juntar", "./images/juntar.png",{frameWidth: 290, frameHeight: 172, endFrame: 11})
+        this.load.spritesheet("chocar", "./images/chocar.png",{frameWidth: 294, frameHeight: 196, endFrame: 12})
         this.load.spritesheet("ola1", "./images/ola1.png",{frameWidth: 202, frameHeight: 202, endFrame: 4})
         this.load.spritesheet("ola2", "./images/ola2.png",{frameWidth: 202, frameHeight: 202, endFrame: 4})
         this.load.spritesheet("ola3", "./images/ola3.png",{frameWidth: 202, frameHeight: 202, endFrame: 4})
@@ -109,14 +112,33 @@ export default class preloader extends Phaser.Scene
             frameRate: 4
         });
 
+        this.anims.create({
+            key: 'ola5',
+            frames: this.anims.generateFrameNumbers('ola5', { start: 0, end: 5 }),
+            repeat: -1,
+            frameRate: 4
+        });
 
+        this.anims.create({
+            key: 'mover',
+            frames: this.anims.generateFrameNumbers('mover', { start: 0, end: 13 }),
+            repeat: -1,
+            frameRate: 10
+        });
 
+        this.anims.create({
+            key: 'juntar',
+            frames: this.anims.generateFrameNumbers('juntar', { start: 0, end: 11 }),
+            repeat: -1,
+            frameRate: 10
+        });
 
-
-
-
-
-
+        this.anims.create({
+            key: 'chocar',
+            frames: this.anims.generateFrameNumbers('chocar', { start: 0, end: 12 }),
+            repeat: -1,
+            frameRate: 10
+        });
 
 
         this.scene.start("idioma")
