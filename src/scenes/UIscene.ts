@@ -65,8 +65,8 @@ export default class UIscene extends Phaser.Scene
             loop:false,
         })
        
-        this.musica.play()
-        this.sonidorio.play()
+        //this.musica.play()
+        //this.sonidorio.play()
 
         this.tiempo = 50
         //this.texto_puntuacion = this.add.text(800,30, "Puntuacion: ",{fontFamily: "Courier", fontSize: 32, fontStyle:"bold"})

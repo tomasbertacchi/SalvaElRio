@@ -56,11 +56,9 @@ export default class mainmenu extends Phaser.Scene{
             loop:true,
         })
     
-        this.musicamenu.play()
         //botones
         const boton_jugar = this.add.image(1920 / 2, 400, "boton").setScale(0.78)
         .setInteractive()
-        .on('pointerdown', () => this.musicamenu.stop())
         .on('pointerdown', () => this.scene.start("game"))
         .on('pointerdown', () => this.sonidoclick.play())
 

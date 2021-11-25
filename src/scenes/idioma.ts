@@ -80,6 +80,7 @@ export default class idioma extends Phaser.Scene{
         const boton = this.add.image(1920 / 2, 550, "boton")
         .setInteractive()
         .on('pointerdown', () => this.scene.start("menu"))
+        .on('pointerdown', () => this.scene.start("musica"))
         .on('pointerdown', () => this.sonidoclick.play())
 
         this.updatedTextInScene = this.add.text(886, 530, getPhrase(this.updatedString) {color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 32}    )

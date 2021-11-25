@@ -11,6 +11,7 @@ export default class menuingame extends Phaser.Scene{
     }
     
     create(){
+
         //background
         this.add.image(1920/2,1080/2, "menu_ingame")
 
