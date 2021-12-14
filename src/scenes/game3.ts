@@ -21,7 +21,7 @@ export default class game3 extends Phaser.Scene
     private olasList: any
     private sonidoclick: any
     private musica: any
-
+    public target = new Phaser.Math.Vector2();
 	constructor()
 	{
 		super('game3')
@@ -94,7 +94,16 @@ export default class game3 extends Phaser.Scene
             // });
             /////////////////////////////////a//
            
-            
+            this.input.on("pointerdown", (pointer: { x: number; y: number }) => {
+
+                this.target.x = pointer.x;
+                this.target.y = pointer.y;
+                var angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.barco.x, this.barco.y, pointer.x, pointer.y);
+                this.barco.setAngle(angle +90);
+                this.physics.moveToObject(this.barco, this.target, 300);
+        
+            }, this);  
+        
         
         }
         
@@ -102,17 +111,18 @@ export default class game3 extends Phaser.Scene
         
 
         update(t: number, dt: number){
-            
-            if (!this.playerController)
-            {
+            if(!this.cursores || !this.barco){
                 return
-        }
-        this.playerController.update(dt)
-
-        
-
-        if(!this.cursores || !this.barco){
-            return
+            }
+    
+    
+            var distance = Phaser.Math.Distance.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
+            if (this.barco.body.speed > 0)
+        {
+            if (distance < 4)
+            {
+                this.barco.body.reset(this.target.x, this.target.y);
+            }
         }
 
 

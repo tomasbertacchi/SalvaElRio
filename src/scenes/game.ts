@@ -18,7 +18,8 @@ export default class game extends Phaser.Scene
     private olasY3: any
     private olasList: any
     private sonidoclick: any
-    
+    public target = new Phaser.Math.Vector2();
+
     private musica: any
 
 	constructor()
@@ -61,7 +62,7 @@ export default class game extends Phaser.Scene
         this.physics.add.collider(this.barco, terreno) //COLISIONES BARCO TERRENO
         this.physics.add.overlap(this.barco, this.basura, this.sumaPunto, undefined, this)
         
-        this.playerController = new PlayerController(this, this.barco, this.cursores)
+        //this.playerController = new PlayerController(this, this.barco, this.cursores)
     
         
         
@@ -86,28 +87,54 @@ export default class game extends Phaser.Scene
             //     faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
             // });
             /////////////////////////////////a//
+
+                    //////////////////////////////
+        this.input.on("pointerdown", (pointer: { x: number; y: number }) => {
+
+            this.target.x = pointer.x;
+            this.target.y = pointer.y;
+            var angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.barco.x, this.barco.y, pointer.x, pointer.y);
+            this.barco.setAngle(angle +90);
+            this.physics.moveToObject(this.barco, this.target, 300);
+    
+        }, this);
+
            
         }
         
 
         
-
-        update(t: number, dt: number){
-            
-            if (!this.playerController)
-            {
-                return
-        }
-        this.playerController.update(dt)
-
-        
-
+    update(t: number, dt: number){
         if(!this.cursores || !this.barco){
             return
         }
 
 
+        var distance = Phaser.Math.Distance.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
+        if (this.barco.body.speed > 0)
+    {
+        if (distance < 4)
+        {
+            this.barco.body.reset(this.target.x, this.target.y);
+        }
     }
+    }  
+    //     update(t: number, dt: number){
+            
+    //         if (!this.playerController)
+    //         {
+    //             return
+    //     }
+    //     this.playerController.update(dt)
+
+        
+
+    //     if(!this.cursores || !this.barco){
+    //         return
+    //     }
+
+
+    // }
     onSecond3(){
         this.numerosrandom2()
         this.olasList = ["ola1", "ola2", "ola3", "ola4", "ola5"]

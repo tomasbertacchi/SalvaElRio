@@ -18,71 +18,71 @@ export default class PlayerController
         this.stateMachine = new StateMachine(this, "player")
         this.target = new Phaser.Math.Vector2()
 
-        this.stateMachine.addState("idle",{
-            onEnter: this.idleOnEnter,
-            onUpdate: this.idleOnUpdate
+        // this.stateMachine.addState("idle",{
+        //     onEnter: this.idleOnEnter,
+        //     onUpdate: this.idleOnUpdate
 
-        })
-        .addState("walk",{
-            onEnter: this.walkOnEnter,
-            onUpdate: this.walkOnUpdate
-        })
-        .setState("idle")
+        // })
+        // .addState("walk",{
+        //     onEnter: this.walkOnEnter,
+        //     onUpdate: this.walkOnUpdate
+        // })
+        // .setState("idle")
     }
 
     update(dt: number){
         this.stateMachine.update(dt)
     }
 
-    private idleOnEnter(){  
-        console.log("idleOnEnter")
-        this.barco.setVelocity(0,0)
-    }
+//     private idleOnEnter(){  
+//         console.log("idleOnEnter")
+//         this.barco.setVelocity(0,0)
+//     }
 
-    private idleOnUpdate(){
+//     private idleOnUpdate(){
 
-        if (this.pointer.isDown && !this.firstClick){
-            console.log('clic')
-            this.target.x = this.pointer.x
-            this.target.y = this.pointer.y
-            this.stateMachine.setState("walk")
-        }
+//         if (this.pointer.isDown && !this.firstClick){
+//             console.log('clic')
+//             this.target.x = this.pointer.x
+//             this.target.y = this.pointer.y
+//             this.stateMachine.setState("walk")
+//         }
 
-        if(this.target.y < 160){
-            this.barco.setVelocity(0,0)
-            this.stateMachine.setState("idle")
-        }    
-        else if (this.target.y > 970){
-            this.stateMachine.setState("idle")
-        }
-        this.firstClick = false
+//         if(this.target.y < 160){
+//             this.barco.setVelocity(0,0)
+//             this.stateMachine.setState("idle")
+//         }    
+//         else if (this.target.y > 970){
+//             this.stateMachine.setState("idle")
+//         }
+//         this.firstClick = false
         
-    }
+//     }
 
-    private walkOnEnter(){
-        console.log("walkOnEnter")
-    }
+//     private walkOnEnter(){
+//         console.log("walkOnEnter")
+//     }
 
-    private walkOnUpdate(){
-        var angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
-        this.barco.setAngle(angle+90);
-        var distance = Phaser.Math.Distance.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
-        //console.log('distancia '+ distance)
-        //console.log('target '+ this.target.x+ ' '+ this.target.y)
-        //console.log('barco '+ this.barco.x +' '+ this.barco.y)
+//     private walkOnUpdate(){
+//         var angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
+//         this.barco.setAngle(angle+90);
+//         var distance = Phaser.Math.Distance.Between(this.barco.x, this.barco.y, this.target.x, this.target.y);
+//         //console.log('distancia '+ distance)
+//         //console.log('target '+ this.target.x+ ' '+ this.target.y)
+//         //console.log('barco '+ this.barco.x +' '+ this.barco.y)
 
-        // if (this.barco.body.touching){
-        //     this.stateMachine.setState("idle")
-        // }
+//         // if (this.barco.body.touching){
+//         //     this.stateMachine.setState("idle")
+//         // }
 
-        if (distance > 5) {
-            this.scene.physics.moveTo(this.barco, this.target.x, this.target.y, 300);
-            this.stateMachine.setState("walk")
-        } else {
-            this.barco.setVelocity(0,0)
-            this.stateMachine.setState("idle")
-        }
+//         if (distance > 5) {
+//             this.scene.physics.moveTo(this.barco, this.target.x, this.target.y, 300);
+//             this.stateMachine.setState("walk")
+//         } else {
+//             this.barco.setVelocity(0,0)
+//             this.stateMachine.setState("idle")
+//         }
 
         
-    }
+//     }
 }
