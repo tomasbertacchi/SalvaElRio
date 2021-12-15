@@ -56,6 +56,7 @@ export default class preloader extends Phaser.Scene
         this.load.image("julio", "./images/julio.png")
         this.load.image("alvaro", "./images/alvaro.png")
         this.load.image("gabriel", "./images/gabriel.png")
+        this.load.image("cartel", "./images/cartel.png")
         this.load.spritesheet("mover", "./images/mover.png",{frameWidth: 345, frameHeight: 261, endFrame: 13})
         this.load.spritesheet("juntar", "./images/juntar.png",{frameWidth: 290, frameHeight: 172, endFrame: 11})
         this.load.spritesheet("chocar", "./images/chocar.png",{frameWidth: 294, frameHeight: 196, endFrame: 12})
