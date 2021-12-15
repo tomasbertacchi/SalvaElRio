@@ -34,20 +34,20 @@ export default class menuingame extends Phaser.Scene{
             .on("pointerdown", () =>{this.toggleMute()})
 
         }
-        const boton_reanudar = this.add.image(1920 / 2, 300, "botonazul")
+        const boton_reanudar = this.add.image(1920 / 2, 300, "boton")
         .setInteractive()
         .on('pointerdown', () => {this.scene.resume("game");this.scene.resume("ui");this.scene.stop("menuingame")})
         .on("pointerdown", () => this.sonidoclick.play())
         this.add.text(812, 252, getPhrase("ingamereanudar"),{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65})
 
-        const boton_tutorial = this.add.image(1920 / 2, 550, "botonazul")
+        const boton_tutorial = this.add.image(1920 / 2, 550, "boton")
         .setInteractive()
         .on('pointerdown', () => {this.scene.stop("game");this.scene.stop("ui");this.scene.start("tutorial")})
         .on("pointerdown", () => this.sonidoclick.play())
         const tutorial = this.add.text( 812, 506, "TUTORIAL",{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 65})
 
 
-        const boton_salir = this.add.image(1920 / 2, 800, "botonazul")
+        const boton_salir = this.add.image(1920 / 2, 800, "boton")
         .setInteractive()
         .on('pointerdown', () => {this.scene.stop("menuingame");this.scene.stop("ui");this.scene.stop("game");this.scene.start("menu")})
         .on("pointerdown", () => this.sonidoclick.play())

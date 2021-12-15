@@ -69,15 +69,17 @@ export default class UIscene extends Phaser.Scene
         //this.sonidorio.play()
 
         this.tiempo = 50
+        this.add.image(935,40, "cartel")
+        this.add.image(1490,40, "cartel")
         //this.texto_puntuacion = this.add.text(800,30, "Puntuacion: ",{fontFamily: "Courier", fontSize: 32, fontStyle:"bold"})
-        this.add.text(800,30, getPhrase("salvaelriopuntos"),{color: "white", fontStyle: "bold", fontFamily: "Courier", fontSize: 32})
+        this.add.text(800,30, getPhrase("salvaelriopuntos"),{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 32})
 
-        this.puntuacion = this.add.text(1035,30, "0" ,{fontFamily: "Courier", fontSize: 32, fontStyle:"bold"})
+        this.puntuacion = this.add.text(1035,30, "0" ,{fontFamily: "Courier", fontSize: 32, fontStyle:"bold", color: "black"})
         this.textotiempo = this.time.addEvent({ delay: 1000, callback: this.onSecond, callbackScope: this, loop: true });
 
-        this.numero_tiempo = this.add.text(1650, 30, this.tiempo, {fontFamily: 'Courier', fontSize: 32, fontStyle:"bold"})
+        this.numero_tiempo = this.add.text(1640, 30, this.tiempo, {fontFamily: 'Courier', fontSize: 32, fontStyle:"bold",color: "black"})
         //this.numero_tiempo = this.add.text(1300, 30, 'Tiempo restante: ', { fontFamily: 'Courier', fontSize: 32, fontStyle:"bold"});
-        this.add.text(1300, 30, getPhrase("salvaelriotiempo"),{color: "white", fontStyle: "bold", fontFamily: "Courier", fontSize: 32})
+        this.add.text(1300, 30, getPhrase("salvaelriotiempo"),{color: "black", fontStyle: "bold", fontFamily: "Courier", fontSize: 32})
 
         //TUERCA
         
